@@ -3,71 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder(0)]
 public class Leni : MonoBehaviour
 {
-    TouchMover touchMover;
-    public GameObject camera;
-
-    public int Speed = 1;
+    InputManager touchMover;
+    public GameObject MainCamera;
+    public bool IsMoving = false;
+    public Vector3 LeniStartPosition;
+    public Vector3 TouchStartPosition;
 
     void Awake()
     {
-        Debug.Log("Leni Instance!");
-        touchMover = TouchMover.Instance;
+        touchMover = InputManager.Instance;
     }
 
     void OnEnable()
     {
-        touchMover.OnStartTouch += Move;
+        touchMover.OnStartTouch += SetMove;
+        touchMover.OnCancelTouch += StopMove;
     }
 
     void OnDisable()
     {
-        touchMover.OnStartTouch -= Move;
+        touchMover.OnStartTouch -= p => SetMove(p);
+        touchMover.OnCancelTouch -= StopMove;
     }
 
-
-    void Move(Vector2 position)
+    void SetMove(Vector2 startTouchPosition)
     {
-        Debug.Log("Leni Move!");
-        var touchPosition = new Vector2(position.x, position.y);
-        var worldPosition = camera.GetComponent<Camera>().ScreenToWorldPoint(touchPosition);
-        worldPosition.x = transform.position.x;
-        worldPosition.z = 0;
-        transform.position = worldPosition;
+        IsMoving = true;
+
+        var touchPosition = new Vector2(0, startTouchPosition.y);
+        TouchStartPosition = MainCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosition);
+        TouchStartPosition.x = transform.position.x;
+        TouchStartPosition.z = 0;
+        Debug.Log("TouchStartPosition" + TouchStartPosition);
+
+        LeniStartPosition = transform.position;
+        Debug.Log("LeniStartPosition" + LeniStartPosition);
+    }
+
+    void StopMove()
+    {
+        IsMoving = false;
+    }
+
+    void Move(float yPosition)
+    {
+        var touchPosition = new Vector2(0, yPosition);
+        var targetPosition = MainCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosition);
+        
+        var touchDeltaY = TouchStartPosition.y - targetPosition.y;
+        Debug.Log("touchDeltaY" + touchDeltaY);
+        transform.position = new Vector3(transform.position.x, LeniStartPosition.y - touchDeltaY, transform.position.z);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0 )
+        if (IsMoving)
         {
-            Debug.Log("Input.touchCount " + Input.touchCount);
+            Move(touchMover.YTargetPosition);
         }
-        // if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        // {
-        //     Debug.Log("Touched");
+        HandleHeartCollision();
+    }
 
-        //     // Get movement of the finger since last frame
-        //     Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+    void HandleHeartCollision()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.zero);
 
-        //     // Move object across X plane
-        //     transform.Translate(touchDeltaPosition.x * Speed, 0, 0);
-        // }
-
-        // Cast a ray straight down.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.down);
-
-        // If it hits something...
         if (hit.collider != null)
         {
             var heart = hit.collider.gameObject.GetComponent<Heart>();
-            var score = heart.Consume();
-            ScoreManager.AddScore(score);
+            var heartValue = heart.Consume();
+            ScoreManager.AddScore(heartValue);
             Destroy(hit.collider.gameObject);
         }
     }
-
-    
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeartsGenerator : MonoBehaviour
@@ -10,11 +8,6 @@ public class HeartsGenerator : MonoBehaviour
     public float FirstY = 2f;
     public float SecondY = -2f;
     private float Counter = 0f;
-
-    void Start()
-    {
-        
-    }
 
     void FixedUpdate()
     {

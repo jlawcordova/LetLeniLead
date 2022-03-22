@@ -1,14 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class ScoreManager
 {
     public static int ScoreValue { get; set; }
 
-    public static void AddScore(int score)
+    public static void AddScore(Heart heart)
     {
-        ScoreValue += score;
+        switch (heart.Type)
+        {
+            case HeartType.Adder:
+                ScoreValue += heart.Value;
+                break;
+            case HeartType.Multiplier:
+                ScoreValue *= heart.Value;
+                break;
+            default:
+                throw new System.Exception();
+        }
     }
 
     public static void ResetScore()

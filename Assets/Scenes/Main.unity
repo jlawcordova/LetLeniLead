@@ -283,8 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed8adda8b76c404eaeaf9b9429a85b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1784480587}
-  Speed: 1
+  MainCamera: {fileID: 1784480587}
+  IsMoving: 0
+  LeniStartPosition: {x: 0, y: 0, z: 0}
+  TouchStartPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1105282689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,7 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -717,7 +719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784480587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e0a8e061ae8914a912208a40957b3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 905c2112c4660d840b3458d5bc579b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1784480589}
+  YTargetPosition: 0

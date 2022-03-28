@@ -11,6 +11,8 @@ public class Leni : MonoBehaviour
     public bool IsMoving = false;
     public Vector3 LeniStartPosition;
     public Vector3 TouchStartPosition;
+    public float MinY = -4.5f;
+    public float MaxY = 4.5f;
 
     void Awake()
     {
@@ -54,18 +56,24 @@ public class Leni : MonoBehaviour
         var targetPosition = MainCamera.GetComponent<Camera>().ScreenToWorldPoint(touchPosition);
         
         var touchDeltaY = TouchStartPosition.y - targetPosition.y;
-        Debug.Log("touchDeltaY" + touchDeltaY);
-        transform.position = new Vector3(transform.position.x, LeniStartPosition.y - touchDeltaY, transform.position.z);
+        var worldY = LeniStartPosition.y - touchDeltaY;
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(worldY, MinY, MaxY), transform.position.z);
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GameState != GameState.Game)
+        {
+            return;
+        }
+
         if (IsMoving)
         {
             Move(touchMover.YTargetPosition);
         }
+
         HandleHeartCollision();
     }
 
@@ -75,6 +83,12 @@ public class Leni : MonoBehaviour
 
         if (hit.collider != null)
         {
+            if (hit.collider.gameObject.tag == "Finish")
+            {
+                GameManager.SetEnd();
+                return;
+            }
+
             var heart = hit.collider.gameObject.GetComponent<Heart>();
             var heartValue = heart.Consume();
             ScoreManager.AddScore(heartValue);

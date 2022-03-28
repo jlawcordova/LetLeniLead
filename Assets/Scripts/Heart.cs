@@ -11,7 +11,7 @@ public enum HeartType
 public class Heart : MonoBehaviour
 {
     public int Score = 1;
-    public float Speed = 20f;
+    public float Speed = 0.1f;
 
     public HeartType Type;
 

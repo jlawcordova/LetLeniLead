@@ -28,10 +28,8 @@ public class GameManager : MonoBehaviour
 
     public static void SetStart()
     {
-        SceneManager.LoadScene("Title");
-        // GameState = GameState.Start;
-        // EndUI.Destroy();
-        // ShowStartUI();
+        ScoreManager.ResetScore();
+        SceneManager.LoadScene("Main");
     }
 
     public static void SetGame()

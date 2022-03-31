@@ -123,8 +123,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 64
+        width: 36
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +142,10 @@ TextureImporter:
       name: Heart_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 36
         y: 0
-        width: 28
-        height: 64
+        width: 36
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: Heart_2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 72
         y: 0
-        width: 28
-        height: 64
+        width: 36
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: Heart_3
       rect:
         serializedVersion: 2
-        x: 84
+        x: 108
         y: 0
-        width: 28
-        height: 64
+        width: 36
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: Heart_4
       rect:
         serializedVersion: 2
-        x: 112
+        x: 144
         y: 0
-        width: 28
-        height: 64
+        width: 36
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

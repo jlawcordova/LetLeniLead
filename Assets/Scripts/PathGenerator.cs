@@ -37,7 +37,7 @@ public class PathGenerator : MonoBehaviour
 
     private void GenerateFinishLine()
     {
-        Instantiate(FinishLine, new Vector3(transform.position.x, transform.position.y + FirstY, 0f), Quaternion.identity);
+        Instantiate(FinishLine, new Vector3(transform.position.x, transform.position.y + FirstY, -3f), Quaternion.identity);
     }
 
     private void GeneratePath()
@@ -49,7 +49,7 @@ public class PathGenerator : MonoBehaviour
             return;
         }
 
-        Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + FirstY, 0f), Quaternion.identity);
-        Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + SecondY, 0f), Quaternion.identity);
+        Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + FirstY, -3f), Quaternion.identity);
+        Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + SecondY, -3f), Quaternion.identity);
     }
 }

@@ -8,6 +8,8 @@ public class BackgroundController : MonoBehaviour
     public float EndXPosition = -21.5f;
     public GameObject[] RoadBackground;
     public GameObject[] LocationBackground;
+    public GameObject[] LocationBackdropBackground;
+    public GameObject[] CloudBackground;
     public float Speed = 0.1f;
     private float maxXPosition;
 
@@ -21,6 +23,14 @@ public class BackgroundController : MonoBehaviour
 
             var locationTransform = LocationBackground[i].transform;
             locationTransform.position = new Vector3(initialXPosition, locationTransform.position.y, locationTransform.position.z);
+        }
+
+        for(int i = 0; i < LocationBackdropBackground.Length; i++)
+        {
+            var initialXPosition = StartXPosition * i;
+
+            var locationBackdropTransform = LocationBackdropBackground[i].transform;
+            locationBackdropTransform.position = new Vector3(initialXPosition, locationBackdropTransform.position.y, locationBackdropTransform.position.z);
         }
     }
 
@@ -45,6 +55,28 @@ public class BackgroundController : MonoBehaviour
             if (locationTransform.position.x <= EndXPosition)
             {
                 locationTransform.position = new Vector3(maxXPosition, locationTransform.position.y, locationTransform.position.z);
+            }
+        }
+
+        foreach (var locationBackdropBackground in LocationBackdropBackground)
+        {
+            var locationBackdropTransform = locationBackdropBackground.transform;
+            locationBackdropTransform.position -= new Vector3(Speed * 0.75f, 0, 0);
+
+            if (locationBackdropTransform.position.x <= EndXPosition)
+            {
+                locationBackdropTransform.position = new Vector3(maxXPosition, locationBackdropTransform.position.y, locationBackdropTransform.position.z);
+            }
+        }
+
+        foreach (var cloudBackground in CloudBackground)
+        {
+            var cloudTransform = cloudBackground.transform;
+            cloudTransform.position -= new Vector3(Speed * 0.5f, 0, 0);
+
+            if (cloudTransform.position.x <= EndXPosition)
+            {
+                cloudTransform.position = new Vector3(maxXPosition, cloudTransform.position.y, cloudTransform.position.z);
             }
         }
     }

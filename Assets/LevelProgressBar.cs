@@ -85,7 +85,7 @@ public class LevelProgressBar : MonoBehaviour
     private void UpdateUI(int filled)
     {
         // Do not exceed.
-        if (filled > Resolution - 1)
+        if (filled > Resolution - 1 || filled < 0)
         {
             return;
         }

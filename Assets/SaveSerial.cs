@@ -14,6 +14,7 @@ public static class SaveSerial
         
         data.TotalGlobalScore = GameManager.Instance.TotalGlobalScore;
         data.TotalLevelScore = GameManager.Instance.TotalLevelScore;
+        data.Level = LevelManager.Instance.Level;
 
         bf.Serialize(file, data);
         file.Close();
@@ -33,11 +34,14 @@ public static class SaveSerial
             file.Close();
             GameManager.Instance.TotalGlobalScore = data.TotalGlobalScore;
             GameManager.Instance.TotalLevelScore = data.TotalLevelScore;
+            LevelManager.Instance.Level = data.Level == 0 ? 1 : data.Level;
             Debug.Log("Game data loaded!");
         }
         else
         {
-            Debug.LogError("There is no save data!");
+            GameManager.Instance.TotalGlobalScore = 0;
+            GameManager.Instance.TotalLevelScore = 0;
+            LevelManager.Instance.Level = 1;
         }
     }
 }
@@ -46,6 +50,7 @@ public static class SaveSerial
 [Serializable]
 public class SaveData
 {
+    public int Level;
     public int TotalGlobalScore;
     public int TotalLevelScore;
 }

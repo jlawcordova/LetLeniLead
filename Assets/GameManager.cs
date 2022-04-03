@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     private int LevelScore = 0;
-    public int LevelCompetionScore = 500;
+    public int LevelCompetionScore = 50;
 
     public GameObject Canvas;
     public GameObject GameUIObject;
@@ -50,6 +50,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SaveSerial.LoadGame();
+
+        Speed = LevelManager.Instance.Speed;
+        Debug.Log("Speed " + Speed);
+        LevelCompetionScore = LevelManager.Instance.CompletionScore;
+        Debug.Log("Level " + LevelManager.Instance.Level);
+
         Instantiate(MainTransition, Canvas.transform);
     }
 
@@ -134,7 +140,7 @@ public class GameManager : MonoBehaviour
 
         if (Instance.TotalLevelScore >= Instance.LevelCompetionScore)
         {
-            // TODO: Unlock new level.
+            LevelManager.Instance.Level++;
             Instance.TotalLevelScore = 0;
         }
 

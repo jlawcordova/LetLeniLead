@@ -6,77 +6,164 @@ public class BackgroundController : MonoBehaviour
 {
     public float StartXPosition = 21.5f;
     public float EndXPosition = -21.5f;
+
     public GameObject[] RoadBackground;
+    public List<GameObject> RoadBackgroundInstances = new List<GameObject>();
+    public Dictionary<GameObject, bool> RoadBackgroundReplaced = new Dictionary<GameObject, bool>();
+
     public GameObject[] LocationBackground;
-    public GameObject[] LocationBackdropBackground;
+    public List<GameObject> LocationBackgroundInstances = new List<GameObject>();
+    public Dictionary<GameObject, bool> LocationBackgroundReplaced = new Dictionary<GameObject, bool>();
+
+    public GameObject[] BackdropBackground;
+    public List<GameObject> BackdropBackgroundInstances = new List<GameObject>();
+    public Dictionary<GameObject, bool> BackdropBackgroundReplaced = new Dictionary<GameObject, bool>();
+    
     public GameObject[] CloudBackground;
-    private float maxXPosition;
+    public List<GameObject> CloudBackgroundInstances = new List<GameObject>();
+    public Dictionary<GameObject, bool> CloudBackgroundReplaced = new Dictionary<GameObject, bool>();
 
-    async void Start()
+    void Start()
     {
-        maxXPosition = (LocationBackground.Length - 1) * StartXPosition;
-
-        for(int i = 0; i < LocationBackground.Length; i++)
-        {
-            var initialXPosition = StartXPosition * i;
-
-            var locationTransform = LocationBackground[i].transform;
-            locationTransform.position = new Vector3(initialXPosition, locationTransform.position.y, locationTransform.position.z);
-        }
-
-        for(int i = 0; i < LocationBackdropBackground.Length; i++)
-        {
-            var initialXPosition = StartXPosition * i;
-
-            var locationBackdropTransform = LocationBackdropBackground[i].transform;
-            locationBackdropTransform.position = new Vector3(initialXPosition, locationBackdropTransform.position.y, locationBackdropTransform.position.z);
-        }
+        // Initialize road background.
+        InstantiateRoad(0);
+        InstantiateLocation(0);
+        InstantiateBackdrop(0);
+        InstantiateCloud(0);
     }
 
     void FixedUpdate()
     {
-        foreach (var roadBackground in RoadBackground)
+        for (int i = 0; i < RoadBackgroundInstances.Count; i++)
         {
-            var roadTransform = roadBackground.transform;
+            var roadBackgroundInstance = RoadBackgroundInstances[i];
+
+            var roadTransform = roadBackgroundInstance.transform;
             roadTransform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
+
+            if (roadTransform.position.x <= 0 && !RoadBackgroundReplaced[roadBackgroundInstance])
+            {
+                InstantiateRoad(StartXPosition);
+                RoadBackgroundReplaced[roadBackgroundInstance] = true;
+            }
 
             if (roadTransform.position.x <= EndXPosition)
             {
-                roadTransform.position = new Vector3(StartXPosition, roadTransform.position.y, roadTransform.position.z);
+                RoadBackgroundInstances.Remove(roadBackgroundInstance);
+                Destroy(roadBackgroundInstance);
             }
         }
 
-        foreach (var locationBackground in LocationBackground)
+        for (int i = 0; i < LocationBackgroundInstances.Count; i++)
         {
-            var locationTransform = locationBackground.transform;
+            var locationBackgroundInstance = LocationBackgroundInstances[i];
+
+            var locationTransform = locationBackgroundInstance.transform;
             locationTransform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
+
+            if (locationTransform.position.x <= 0 && !LocationBackgroundReplaced[locationBackgroundInstance])
+            {
+                InstantiateLocation(StartXPosition);
+                LocationBackgroundReplaced[locationBackgroundInstance] = true;
+            }
 
             if (locationTransform.position.x <= EndXPosition)
             {
-                locationTransform.position = new Vector3(maxXPosition, locationTransform.position.y, locationTransform.position.z);
+                LocationBackgroundInstances.Remove(locationBackgroundInstance);
+                Destroy(locationBackgroundInstance);
             }
         }
 
-        foreach (var locationBackdropBackground in LocationBackdropBackground)
+        for (int i = 0; i < BackdropBackgroundInstances.Count; i++)
         {
-            var locationBackdropTransform = locationBackdropBackground.transform;
-            locationBackdropTransform.position -= new Vector3(GameManager.Instance.Speed * 0.75f, 0, 0);
+            var backdropBackgroundInstance = BackdropBackgroundInstances[i];
 
-            if (locationBackdropTransform.position.x <= EndXPosition)
+            var backdropTransform = backdropBackgroundInstance.transform;
+            backdropTransform.position -= new Vector3(GameManager.Instance.Speed * 0.75f, 0, 0);
+
+            if (backdropTransform.position.x <= 0 && !BackdropBackgroundReplaced[backdropBackgroundInstance])
             {
-                locationBackdropTransform.position = new Vector3(maxXPosition, locationBackdropTransform.position.y, locationBackdropTransform.position.z);
+                InstantiateBackdrop(StartXPosition);
+                BackdropBackgroundReplaced[backdropBackgroundInstance] = true;
+            }
+
+            if (backdropTransform.position.x <= EndXPosition)
+            {
+                BackdropBackgroundInstances.Remove(backdropBackgroundInstance);
+                Destroy(backdropBackgroundInstance);
             }
         }
 
-        foreach (var cloudBackground in CloudBackground)
+        for (int i = 0; i < CloudBackgroundInstances.Count; i++)
         {
-            var cloudTransform = cloudBackground.transform;
+            var cloudBackgroundInstance = CloudBackgroundInstances[i];
+
+            var cloudTransform = cloudBackgroundInstance.transform;
             cloudTransform.position -= new Vector3(GameManager.Instance.Speed * 0.5f, 0, 0);
+
+            if (cloudTransform.position.x <= 0 && !CloudBackgroundReplaced[cloudBackgroundInstance])
+            {
+                InstantiateCloud(StartXPosition);
+                CloudBackgroundReplaced[cloudBackgroundInstance] = true;
+            }
 
             if (cloudTransform.position.x <= EndXPosition)
             {
-                cloudTransform.position = new Vector3(maxXPosition, cloudTransform.position.y, cloudTransform.position.z);
+                CloudBackgroundInstances.Remove(cloudBackgroundInstance);
+                Destroy(cloudBackgroundInstance);
             }
         }
+    }
+
+    private void InstantiateRoad(float initialXPosition)
+    {
+        var roadIndex = Random.Range(0, RoadBackground.Length);
+        var roadBackgroundGameObject = RoadBackground[roadIndex];
+
+        var roadBackgroundInstance = Instantiate(roadBackgroundGameObject, 
+            new Vector3(
+                initialXPosition, roadBackgroundGameObject.transform.position.y, roadBackgroundGameObject.transform.position.z),
+            Quaternion.identity);
+        RoadBackgroundInstances.Add(roadBackgroundInstance);
+        RoadBackgroundReplaced.Add(roadBackgroundInstance, false);
+    }
+
+    private void InstantiateLocation(float initialXPosition)
+    {
+        var locationIndex = Random.Range(0, LocationBackground.Length);
+        var locationBackgroundGameObject = LocationBackground[locationIndex];
+
+        var locationBackgroundInstance = Instantiate(locationBackgroundGameObject, 
+            new Vector3(
+                initialXPosition, locationBackgroundGameObject.transform.position.y, locationBackgroundGameObject.transform.position.z),
+            Quaternion.identity);
+        LocationBackgroundInstances.Add(locationBackgroundInstance);
+        LocationBackgroundReplaced.Add(locationBackgroundInstance, false);
+    }
+
+    private void InstantiateBackdrop(float initialXPosition)
+    {
+        var backdropIndex = Random.Range(0, BackdropBackground.Length);
+        var backdropBackgroundGameObject = BackdropBackground[backdropIndex];
+
+        var backdropBackgroundInstance = Instantiate(backdropBackgroundGameObject, 
+            new Vector3(
+                initialXPosition, backdropBackgroundGameObject.transform.position.y, backdropBackgroundGameObject.transform.position.z),
+            Quaternion.identity);
+        BackdropBackgroundInstances.Add(backdropBackgroundInstance);
+        BackdropBackgroundReplaced.Add(backdropBackgroundInstance, false);
+    }
+
+    private void InstantiateCloud(float initialXPosition)
+    {
+        var cloudIndex = Random.Range(0, CloudBackground.Length);
+        var cloudBackgroundGameObject = CloudBackground[cloudIndex];
+
+        var cloudBackgroundInstance = Instantiate(cloudBackgroundGameObject, 
+            new Vector3(
+                initialXPosition, cloudBackgroundGameObject.transform.position.y, cloudBackgroundGameObject.transform.position.z),
+            Quaternion.identity);
+        CloudBackgroundInstances.Add(cloudBackgroundInstance);
+        CloudBackgroundReplaced.Add(cloudBackgroundInstance, false);
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    public float Speed = 0.1f;
-
     void FixedUpdate()
     {
         if (GameManager.GameState == GameState.End)
@@ -19,7 +17,7 @@ public class FinishLine : MonoBehaviour
 
     private void Move()
     {
-        transform.position -= new Vector3(Speed, 0, 0);
+        transform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
     }
 
     private void HandleEdge()

@@ -18,7 +18,6 @@ public static class SaveSerial
 
         bf.Serialize(file, data);
         file.Close();
-        Debug.Log("Game data saved!");
     }
 
     public static void LoadGame()
@@ -32,10 +31,10 @@ public static class SaveSerial
                     + "/LetLeniLead.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
+            
             GameManager.Instance.TotalGlobalScore = data.TotalGlobalScore;
             GameManager.Instance.TotalLevelScore = data.TotalLevelScore;
             LevelManager.Instance.Level = data.Level == 0 ? 1 : data.Level;
-            Debug.Log("Game data loaded!");
         }
         else
         {

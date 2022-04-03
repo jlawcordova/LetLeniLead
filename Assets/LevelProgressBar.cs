@@ -39,7 +39,6 @@ public class LevelProgressBar : MonoBehaviour
     void Start()
     {
         Step = CompletionScore / Resolution;
-        Debug.Log(Step);
 
         var filled = PreviousScore / Step;
         for (int i = 0; i < filled; i++)

@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static GameState GameState { get; set; }
 
+    public int HeartStreakCounter = 0;
+    public int HeartStreakDuration = 10;
+    public int HeartStreakTimer = 0;
+
 
     #region Scoring
 
@@ -52,9 +56,7 @@ public class GameManager : MonoBehaviour
         SaveSerial.LoadGame();
 
         Speed = LevelManager.Instance.Speed;
-        Debug.Log("Speed " + Speed);
         LevelCompetionScore = LevelManager.Instance.CompletionScore;
-        Debug.Log("Level " + LevelManager.Instance.Level);
 
         Instantiate(MainTransition, Canvas.transform);
     }
@@ -69,6 +71,15 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (HeartStreakTimer > 0)
+        {
+            HeartStreakTimer--;
+        }
+        else
+        {
+            HeartStreakCounter = 0;
+        }
+
         if (GameState == GameState.End && ScoreManager.ScoreValue <= 0 && !EndUIShown)
         {
             ShowEndUI();

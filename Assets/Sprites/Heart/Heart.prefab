@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdb1634605ab4e4fb4e92055f8b0564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sound: {fileID: 8300000, guid: 37780d04dbd26c64390073546e3493d7, type: 3}
   Type: 0
   Value: 1
 --- !u!50 &3781478909086060198

@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static GameState GameState { get; set; }
 
+
     #region Scoring
 
+    public int TotalLevelScore = 0;
     public int TotalGlobalScore = 0;
-    public int GlobalScore = 0;
 
     #endregion
+
+    private int LevelScore = 0;
+    public int LevelCompetionScore = 500;
 
     public GameObject Canvas;
     public GameObject GameUIObject;
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
     public float Speed = -0.1f;
     private bool EndUIShown = false;
     public Animator TransitionAnimator;
+    public GameObject GameUI;
     public GameObject EndTransitionInstance;
 
     private void Awake() 
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SaveSerial.LoadGame();
         Instantiate(MainTransition, Canvas.transform);
     }
 
@@ -79,8 +85,16 @@ public class GameManager : MonoBehaviour
     {
         GameState = GameState.End;
         Instance.Speed = 0f;
+        GameManager.Instance.LevelScore = ScoreManager.ScoreValue;
         ShowVolunteerGenerator(); 
         ShowConfetti();
+    }
+
+    private static void SetProgressBar()
+    {
+        LevelProgressBar.Instance.PreviousScore = GameManager.Instance.TotalLevelScore;
+        LevelProgressBar.Instance.CurrentScore = GameManager.Instance.TotalLevelScore + GameManager.Instance.LevelScore;
+        LevelProgressBar.Instance.CompletionScore = GameManager.Instance.LevelCompetionScore;
     }
 
     private static void ShowConfetti()
@@ -101,12 +115,30 @@ public class GameManager : MonoBehaviour
     private static void ShowGameUI()
     {
         StartUI.Destroy();
-        Instantiate(Instance.GameUIObject, Instance.Canvas.transform);
+        GameManager.Instance.GameUI = Instantiate(Instance.GameUIObject, Instance.Canvas.transform);
     }
 
     private static void ShowEndUI()
     {
         Instantiate(Instance.EndUIObject, Instance.Canvas.transform);
+        Destroy(GameManager.Instance.GameUI);
+        SetProgressBar();
+
+        SaveScore();
+    }
+
+    private static void SaveScore()
+    {
+        Instance.TotalGlobalScore += GameManager.Instance.LevelScore;
+        Instance.TotalLevelScore += GameManager.Instance.LevelScore;
+
+        if (Instance.TotalLevelScore >= Instance.LevelCompetionScore)
+        {
+            // TODO: Unlock new level.
+            Instance.TotalLevelScore = 0;
+        }
+
+        SaveSerial.SaveGame();
     }
 }
 

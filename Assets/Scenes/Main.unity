@@ -1468,6 +1468,10 @@ PrefabInstance:
       propertyPath: VolunteerGenerator
       value: 
       objectReference: {fileID: 2373804014607384319, guid: a0f7b4ca30bdbb041aff442e8b8dd804, type: 3}
+    - target: {fileID: 5573532545010701520, guid: 58d7595b6228b674185ccaf6c9a80241, type: 3}
+      propertyPath: LevelCompetionScore
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5573532545010701521, guid: 58d7595b6228b674185ccaf6c9a80241, type: 3}
       propertyPath: m_RootOrder
       value: 2

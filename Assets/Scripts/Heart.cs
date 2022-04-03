@@ -10,19 +10,9 @@ public enum HeartType
 
 public class Heart : MonoBehaviour
 {
-    public int Score = 1;
-    public float Speed = 0.1f;
+    public HeartType Type = HeartType.Adder;
 
-    public HeartType Type;
-
-    public int Value;
-
-    void Start()
-    {
-        // TODO: Handle heart value rarity.
-        Type = (HeartType)Random.Range(0, 2) ;
-        Value = Random.Range(1, 3) ;
-    }
+    public int Value = 1;
 
     void FixedUpdate()
     {
@@ -31,9 +21,9 @@ public class Heart : MonoBehaviour
 
     private void HandleEdge()
     {
-        transform.position -= new Vector3(Speed, 0, 0);
+        transform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
 
-        if (transform.position.x < -10f)
+        if (transform.position.x < -15f)
         {
             Destroy(gameObject);
         }

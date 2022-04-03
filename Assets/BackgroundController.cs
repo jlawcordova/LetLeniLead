@@ -10,7 +10,6 @@ public class BackgroundController : MonoBehaviour
     public GameObject[] LocationBackground;
     public GameObject[] LocationBackdropBackground;
     public GameObject[] CloudBackground;
-    public float Speed = 0.1f;
     private float maxXPosition;
 
     async void Start()
@@ -39,7 +38,7 @@ public class BackgroundController : MonoBehaviour
         foreach (var roadBackground in RoadBackground)
         {
             var roadTransform = roadBackground.transform;
-            roadTransform.position -= new Vector3(Speed, 0, 0);
+            roadTransform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
 
             if (roadTransform.position.x <= EndXPosition)
             {
@@ -50,7 +49,7 @@ public class BackgroundController : MonoBehaviour
         foreach (var locationBackground in LocationBackground)
         {
             var locationTransform = locationBackground.transform;
-            locationTransform.position -= new Vector3(Speed, 0, 0);
+            locationTransform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
 
             if (locationTransform.position.x <= EndXPosition)
             {
@@ -61,7 +60,7 @@ public class BackgroundController : MonoBehaviour
         foreach (var locationBackdropBackground in LocationBackdropBackground)
         {
             var locationBackdropTransform = locationBackdropBackground.transform;
-            locationBackdropTransform.position -= new Vector3(Speed * 0.75f, 0, 0);
+            locationBackdropTransform.position -= new Vector3(GameManager.Instance.Speed * 0.75f, 0, 0);
 
             if (locationBackdropTransform.position.x <= EndXPosition)
             {
@@ -72,7 +71,7 @@ public class BackgroundController : MonoBehaviour
         foreach (var cloudBackground in CloudBackground)
         {
             var cloudTransform = cloudBackground.transform;
-            cloudTransform.position -= new Vector3(Speed * 0.5f, 0, 0);
+            cloudTransform.position -= new Vector3(GameManager.Instance.Speed * 0.5f, 0, 0);
 
             if (cloudTransform.position.x <= EndXPosition)
             {

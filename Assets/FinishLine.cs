@@ -8,7 +8,7 @@ public class FinishLine : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameManager.GameState != GameState.Game)
+        if (GameManager.GameState == GameState.End)
         {
             return;
         }

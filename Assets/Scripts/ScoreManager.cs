@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class ScoreManager
 {
     public static int ScoreValue { get; set; }
@@ -15,6 +17,11 @@ public static class ScoreManager
             default:
                 throw new System.Exception();
         }
+    }
+    public static void DeductScore(int deduction)
+    {
+        var temp = ScoreValue;
+        ScoreValue = Mathf.Clamp(ScoreValue - deduction, 0, temp);
     }
 
     public static void ResetScore()

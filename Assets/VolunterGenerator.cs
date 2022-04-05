@@ -2,20 +2,30 @@ using UnityEngine;
 
 public class VolunterGenerator : MonoBehaviour
 {
+    public int IncreaseRate = 5;
+    public int IncreaseCounter = 0;
     public float Rate = 25f;
     private float Counter = 25f;
     public GameObject[] Volunteers;
     public float StartX = -10f;
     public float MinY = -4.5f;
     public float MaxY = 4.5f;
+    public AudioClip Sound;
 
 
     void FixedUpdate()
     {
+        if (IncreaseCounter > IncreaseRate)
+        {
+            Rate = Mathf.Clamp(Rate - 5f, 5f, 50f);
+            IncreaseCounter = 0;
+        }
+
         if(Counter > Rate)
         {
             if (ScoreManager.ScoreValue > 0)
             {
+                IncreaseCounter++;
                 GenerateVolunteer();
             }
             Counter = 0f;
@@ -37,6 +47,7 @@ public class VolunterGenerator : MonoBehaviour
                 Random.Range(MinY, MaxY),
                 -5f),
             Quaternion.identity);
+            AudioManager.Play("Volunteer", Sound, 1, false);
         ScoreManager.DeductScore(volunteer.ScoreValue);
     }
 }

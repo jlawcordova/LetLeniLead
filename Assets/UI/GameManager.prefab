@@ -43,7 +43,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b9a7aec7b749444a498eb26ddf3cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeartStreakCounter: 0
+  HeartStreakDuration: 50
+  HeartStreakTimer: 0
+  TotalLevelScore: 0
+  TotalGlobalScore: 0
+  LevelCompetionScore: 50
   Canvas: {fileID: 1278585308705000097, guid: 3ddefb2b62342c2429b8b45114be93e4, type: 3}
   GameUIObject: {fileID: 8654182205835738953, guid: b453fcb406bccff498c4b123d33d61b2, type: 3}
+  Confetti: {fileID: 0}
   EndUIObject: {fileID: 2159014210751260646, guid: 5a488a833fbbc8648be84eb617f428b7, type: 3}
   StartUIObject: {fileID: 2366701740558946509, guid: c36dccbc22bdf7d439bf1ba56149360f, type: 3}
+  VolunteerGenerator: {fileID: 0}
+  MainTransition: {fileID: 0}
+  EndTransition: {fileID: 0}
+  Speed: -0.1
+  TransitionAnimator: {fileID: 0}
+  GameUI: {fileID: 0}
+  EndTransitionInstance: {fileID: 0}

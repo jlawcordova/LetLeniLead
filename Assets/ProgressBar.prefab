@@ -167,3 +167,10 @@ MonoBehaviour:
   Rate: 10
   Counter: 0
   Fill: {fileID: 6239033804654933924}
+  PreviousScore: 0
+  PreviousScoreGameObject: {fileID: 0}
+  CurrentScore: 100
+  CompletionScore: 1000
+  CompletionScoreGameObject: {fileID: 0}
+  NextLevelGameObject: {fileID: 0}
+  ProgressSound: {fileID: 8300000, guid: 7b1b2b6aa0acb7243b3dd276e52e4f86, type: 3}

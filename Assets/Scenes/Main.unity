@@ -297,10 +297,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Heart: {fileID: 8342599927381167540, guid: 6e5f07b4bd7c33e40871f91f2971f661, type: 3}
+  Heart2x: {fileID: 4042462288830738460, guid: 8228f2640e1c37a42a227cd975035b10, type: 3}
   FinishLine: {fileID: 1201576377512519878, guid: 51ebea08c59c8d647a30499d78078aaa, type: 3}
   Rate: 100
   SplitY:
   - -3.5
+  - -1
+  BulkY:
+  - -3.5
+  - -2.67
+  - -1.84
   - -1
   MaxPathCount: 5
 --- !u!4 &71461688
@@ -820,6 +826,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3817248335955169040, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817248335955169040, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817248335955169040, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817248335955169040, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d91afc937265b14bacbd26d7709b668, type: 3}
+    - target: {fileID: 3817248335955169040, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3817248335955169041, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -913,6 +939,10 @@ PrefabInstance:
       propertyPath: VolunteerGenerator
       value: 
       objectReference: {fileID: 2373804014607384319, guid: a0f7b4ca30bdbb041aff442e8b8dd804, type: 3}
+    - target: {fileID: 5573532545010701520, guid: 58d7595b6228b674185ccaf6c9a80241, type: 3}
+      propertyPath: HeartStreakDuration
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5573532545010701520, guid: 58d7595b6228b674185ccaf6c9a80241, type: 3}
       propertyPath: LevelCompetionScore
       value: 25

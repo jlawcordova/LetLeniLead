@@ -5,8 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public List<AudioSource> AudioSources = new List<AudioSource>();
-    public HashSet<string> AudioSounds = new HashSet<string>();
+    public Dictionary<string, AudioSource> AudioSources = new Dictionary<string, AudioSource>();
     private void Awake()
     {
         if (Instance != null)
@@ -19,22 +18,19 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void Play(string name, AudioClip clip, float pitch, bool loop)
+    public static void Play(string name, AudioClip clip, float pitch, bool loop, float volume = 0.65f)
     {
-        if (!AudioManager.Instance.AudioSounds.Contains(name))
+        if (!AudioManager.Instance.AudioSources.ContainsKey(name))
         {
             var source = AudioManager.Instance.gameObject.AddComponent<AudioSource>();
-
-            source.name = name;
-
-            AudioManager.Instance.AudioSounds.Add(name);
-            AudioManager.Instance.AudioSources.Add(source);
+            AudioManager.Instance.AudioSources.Add(name, source);
         }
 
-        var audioSource = AudioManager.Instance.AudioSources.Find(a => a.name == name);
+        var audioSource = AudioManager.Instance.AudioSources[name];
         audioSource.clip = clip;
         audioSource.pitch = pitch;
         audioSource.loop = loop;
+        audioSource.volume = volume;
         audioSource.Play();
     }
 }

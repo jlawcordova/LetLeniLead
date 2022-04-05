@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68974e53d6cbc3e40a42ec51d83e96b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IncreaseRate: 5
+  IncreaseCounter: 0
   Rate: 25
   Volunteers:
   - {fileID: 2207322955125517053, guid: 7733273af2a102b499c924583fb63fc6, type: 3}
@@ -54,3 +56,4 @@ MonoBehaviour:
   StartX: -11
   MinY: -4.5
   MaxY: 0
+  Sound: {fileID: 8300000, guid: 3fa60148ff951b74d8da360b48e393ea, type: 3}

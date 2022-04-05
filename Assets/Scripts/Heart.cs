@@ -11,6 +11,7 @@ public enum HeartType
 public class Heart : MonoBehaviour
 {
     public AudioClip Sound;
+    public string SoundName;
     public HeartType Type = HeartType.Adder;
 
     public int Value = 1;
@@ -37,7 +38,7 @@ public class Heart : MonoBehaviour
 
         var pitchAdjustment = Mathf.Clamp(1 + (GameManager.Instance.HeartStreakCounter * 0.2f), 1, 3);
 
-        AudioManager.Play("Heart", Sound, pitchAdjustment, false);
+        AudioManager.Play(SoundName, Sound, pitchAdjustment, false);
         Destroy(gameObject);
 
         return this;

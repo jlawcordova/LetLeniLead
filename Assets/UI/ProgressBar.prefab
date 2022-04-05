@@ -570,6 +570,8 @@ MonoBehaviour:
   CompletionScore: 200
   CompletionScoreGameObject: {fileID: 1388403070274095076}
   NextLevelGameObject: {fileID: 1388403071699418063}
+  ProgressSound: {fileID: 8300000, guid: 7b1b2b6aa0acb7243b3dd276e52e4f86, type: 3}
+  LevelupSound: {fileID: 8300000, guid: d715481ac2720084ba3e788621256628, type: 3}
 --- !u!95 &2501494799046973643
 Animator:
   serializedVersion: 3

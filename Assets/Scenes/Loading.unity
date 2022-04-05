@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 920c6b1fabaf39743b360c868489001e, type: 3}
-    m_FontSize: 58
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -257,7 +257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 28}
+  m_AnchoredPosition: {x: 0, y: 54}
   m_SizeDelta: {x: 1055, y: 57.8176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &552016362
@@ -282,11 +282,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 627d671855e910544bab46d7923b969e, type: 3}
-    m_FontSize: 36
+    m_FontSize: 56
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 56
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -355,10 +355,10 @@ RectTransform:
   m_Father: {fileID: 1303606674}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 393.95}
+  m_SizeDelta: {x: -420, y: 393.95}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1173022416
 MonoBehaviour:
@@ -381,12 +381,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 920c6b1fabaf39743b360c868489001e, type: 3}
-    m_FontSize: 32
+    m_Font: {fileID: 12800000, guid: 627d671855e910544bab46d7923b969e, type: 3}
+    m_FontSize: 56
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 56
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -455,7 +455,7 @@ MonoBehaviour:
     ang kanyang pamamahala.
   - Nakakuha ang Office of the Vice President ni Leni Robredo ng ISO 9001:2015 Certification.
     Ito ay indikasyon ng magandang sistema ng kanyang pamamahala.
-  - Nagsagawa ng Swab Carb Initiative si VP Leni Robredo. Nakapagbigay ito ng libreng
+  - Nagsagawa ng Swab Cab Initiative si VP Leni Robredo. Nakapagbigay ito ng libreng
     testing para sa COVID-19.
   - Isa sa COVID-19 program ni VP Leni Robredo ang Bayanihan E-Skwela na nakapagbigay
     ng mga materyales sa mga estudyante para sa distance learning.
@@ -466,8 +466,8 @@ MonoBehaviour:
   - Plano ni VP Leni Robredo na palakasin ang tech industry sa Pilipinas. Sa industriyang
     ito, tatapatan ng mas malaking sahod ang husay ng Pilipino.
   - Isa sa plataporma ni VP Leni Robredo ang i-develop ang maritime industry. Pararamihin
-    at pahusayin pa ang Pilipinong marino, at palalakasin niya ang shipbuilding sa
-    bansa.
+    at pahuhusayin pa niya ang Pilipinong marino, at palalakasin niya ang shipbuilding
+    sa bansa.
 --- !u!1 &1303606670
 GameObject:
   m_ObjectHideFlags: 0

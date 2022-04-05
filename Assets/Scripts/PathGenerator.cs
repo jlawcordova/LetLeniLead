@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(2)]
 public class PathGenerator : MonoBehaviour
 {
     public GameObject Heart;
@@ -16,10 +17,8 @@ public class PathGenerator : MonoBehaviour
 
     void Start()
     {
-        MaxPathCount = 4 + Mathf.Clamp(LevelManager.Instance.Level / 3, 1, 8);
-        Rate = 100f - Mathf.Clamp((LevelManager.Instance.Level * 4), 1, 50);
-        Debug.Log("Level " + LevelManager.Instance.Level);
-        Debug.Log("MaxPathCount " + MaxPathCount);
+        MaxPathCount = 4 + Mathf.Clamp(LevelManager.Instance.Level / 3, 1, 6);
+        Rate = 100f - Mathf.Clamp((LevelManager.Instance.Level * 4), 1, 60);
     }
 
     void FixedUpdate()
@@ -175,7 +174,7 @@ public class PathGenerator : MonoBehaviour
     private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
     {
         var chance = Random.Range(0f, 100f);
-        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level *.65f, 0f, 15f);
+        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level *.65f, 0f, 7f);
         if ((chance > (95 - levelChanceBonus) || sure2x) && !sure1)
         {
             Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);

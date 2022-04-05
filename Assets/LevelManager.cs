@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
-    private const int LevelTypeCount = 1;
+    private const int LevelTypeCount = 2;
     public LevelType LevelType
     {
         get
@@ -15,11 +15,25 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public int LevelTypeIndex
+    {
+        get
+        {
+            var index = (int)LevelType - 1;
+            if (index < 0)
+            {
+                index = LevelTypeCount - 1;
+            }
+
+            return index;
+        }
+    }
+
     public float Speed
     {
         get
         {
-            return 0.1f * (1 + (Level * 0.075f));
+            return Mathf.Clamp(0.1f * (1 + (Level * 0.075f)), 0.1f, 0.35f);
         }
     }
 
@@ -47,5 +61,6 @@ public class LevelManager : MonoBehaviour
 
 public enum LevelType
 {
-    Naga
+    Naga,
+    Pasig,
 }

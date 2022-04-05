@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(2)]
 public class BackgroundController : MonoBehaviour
 {
     public float StartXPosition = 21.5f;
@@ -143,7 +144,7 @@ public class BackgroundController : MonoBehaviour
 
     private void InstantiateBackdrop(float initialXPosition)
     {
-        var backdropIndex = Random.Range(0, BackdropBackground.Length);
+        var backdropIndex = LevelManager.Instance.LevelTypeIndex;
         var backdropBackgroundGameObject = BackdropBackground[backdropIndex];
 
         var backdropBackgroundInstance = Instantiate(backdropBackgroundGameObject, 

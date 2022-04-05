@@ -25,6 +25,7 @@ public class LevelProgressBar : MonoBehaviour
     private HashSet<int> ProgressUITracker = new HashSet<int>();
     public AudioClip ProgressSound;
     public AudioClip LevelupSound;
+    private bool ProgressComplete = false;
 
     private void Awake() 
     { 
@@ -71,10 +72,11 @@ public class LevelProgressBar : MonoBehaviour
                     AudioManager.Play("Progress", ProgressSound, 1.2f, false, 0.45f);
                 }
 
-                if (PreviousScore >= CompletionScore)
+                if (PreviousScore >= CompletionScore && !ProgressComplete)
                 {
                     AudioManager.Play("LevelUp", LevelupSound, 1.4f, false, 0.8f);
                     NextLevelText.text = "PASOK NA SA NEXT LEVEL!";
+                    ProgressComplete = true;
                     return;
                 }
 

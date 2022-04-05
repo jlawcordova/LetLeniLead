@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(0)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static GameState GameState { get; set; }
 
     public int HeartStreakCounter = 0;
-    public int HeartStreakDuration = 10;
+    public int HeartStreakDuration = 20;
     public int HeartStreakTimer = 0;
 
 
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
     public Animator TransitionAnimator;
     public GameObject GameUI;
     public GameObject EndTransitionInstance;
+    private int EndDelay = 100;
+    private int EndDelayCounter = 0;
 
     private void Awake() 
     { 
@@ -80,7 +83,12 @@ public class GameManager : MonoBehaviour
             HeartStreakCounter = 0;
         }
 
-        if (GameState == GameState.End && ScoreManager.ScoreValue <= 0 && !EndUIShown)
+        if (GameState == GameState.End && ScoreManager.ScoreValue <= 0 && EndDelayCounter < EndDelay)
+        {
+            EndDelayCounter++;
+        }
+
+        if (GameState == GameState.End && ScoreManager.ScoreValue <= 0 && !EndUIShown && EndDelayCounter >= EndDelay)
         {
             ShowEndUI();
             EndUIShown = true;

@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 1353945586998078056, guid: 3b0cb1ddbefd14741bfb11fd20271f8e, type: 3}
   - {fileID: 2660435026990298197, guid: 598d1b07c1e1fae47bc1a8c4db60a716, type: 3}
   - {fileID: 234856133861423770, guid: 2a218ca014bdcda4399b606ecb147fb1, type: 3}
+  - {fileID: 1327279791920662129, guid: ec1e94f81c6f33545a3c334f389b1649, type: 3}
+  - {fileID: 807500980404085724, guid: 9885a4e0b336eff4ca9f62280d5ce65f, type: 3}
   StartX: -11
   MinY: -4.5
   MaxY: 0

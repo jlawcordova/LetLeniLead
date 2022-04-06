@@ -131,7 +131,7 @@ public class BackgroundController : MonoBehaviour
 
     private void InstantiateLocation(float initialXPosition)
     {
-        var locationIndex = Random.Range(0, LocationBackground.Length);
+        var locationIndex = LevelManager.Instance.LevelTypeIndex;
         var locationBackgroundGameObject = LocationBackground[locationIndex];
 
         var locationBackgroundInstance = Instantiate(locationBackgroundGameObject, 

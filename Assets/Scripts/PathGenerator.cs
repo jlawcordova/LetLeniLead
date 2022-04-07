@@ -7,6 +7,7 @@ public class PathGenerator : MonoBehaviour
     public GameObject Heart2x;
     public GameObject HeartPlus2;
     public GameObject HeartPlus3;
+    public GameObject Rosas;
     public GameObject FinishLine;
 
     public float Rate = 100f;
@@ -19,7 +20,7 @@ public class PathGenerator : MonoBehaviour
 
     void Start()
     {
-        MaxPathCount = 4 + Mathf.Clamp(LevelManager.Instance.Level / 3, 1, 6);
+        MaxPathCount = 5 + Mathf.Clamp(LevelManager.Instance.Level, 1, 5);
         Rate = 100f - Mathf.Clamp((LevelManager.Instance.Level * 4), 1, 60);
     }
 
@@ -193,9 +194,14 @@ public class PathGenerator : MonoBehaviour
             Instantiate(HeartPlus3, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
-        else if (chance > 2 || sure1)
+        else if (chance > 5 || sure1)
         {
             Instantiate(Heart, new Vector3(x, y, -3f), Quaternion.identity);
+            return;
+        }
+        else if (chance > 2)
+        {
+            Instantiate(Rosas, new Vector3(x, y, -3f), Quaternion.identity);
             return;
         }
         else {

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int TotalLevelScore = 0;
     public int TotalGlobalScore = 0;
+    public int TotalRosas = 0;
 
     #endregion
 
@@ -104,6 +105,11 @@ public class GameManager : MonoBehaviour
     {
         GameState = GameState.Game;
         ShowGameUI();
+    }
+
+    public static void SetShop()
+    {
+        SceneManager.LoadScene("Shop");
     }
 
     public static void SetEnd()

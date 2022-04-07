@@ -102,9 +102,15 @@ public class Leni : MonoBehaviour
             }
 
             var heart = hit.collider.gameObject.GetComponent<Heart>();
-            var heartBurst = Instantiate(HeartBurst, new Vector3(transform.position.x, transform.position.y, -4), HeartBurst.transform.rotation);
             var heartValue = heart.Consume();
-            ScoreManager.AddScore(heartValue);
+            if (heartValue.Style == HeartStyle.Heart)
+            {
+                var heartBurst = Instantiate(HeartBurst, new Vector3(transform.position.x, transform.position.y, -4), HeartBurst.transform.rotation);
+                ScoreManager.AddScore(heartValue);
+            } else if (heartValue.Style == HeartStyle.Rosas)
+            {
+                GameManager.Instance.TotalRosas++;
+            }
             Destroy(hit.collider.gameObject);
         }
     }

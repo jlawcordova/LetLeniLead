@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            return Mathf.Clamp(0.1f * (1 + (Level * 0.075f)), 0.1f, 0.35f);
+            return Mathf.Clamp(0.1f * (1 + (Level * 0.1f)), 0.1f, 0.35f);
         }
     }
 
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            return (75 * Level) - 25;
+            return Mathf.FloorToInt((100f * (Level * Level)) - (150f * Level) + 100f);
         }
     }
 

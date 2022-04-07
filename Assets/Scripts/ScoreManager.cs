@@ -18,6 +18,7 @@ public static class ScoreManager
                 throw new System.Exception();
         }
     }
+
     public static void DeductScore(int deduction)
     {
         var temp = ScoreValue;

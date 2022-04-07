@@ -6,6 +6,7 @@ public class PathGenerator : MonoBehaviour
     public GameObject Heart;
     public GameObject Heart2x;
     public GameObject HeartPlus2;
+    public GameObject HeartPlus3;
     public GameObject FinishLine;
 
     public float Rate = 100f;
@@ -60,7 +61,7 @@ public class PathGenerator : MonoBehaviour
 
         var chance = Random.Range(0, 100);
 
-        if (chance > 45)
+        if (chance > 40)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -82,7 +83,7 @@ public class PathGenerator : MonoBehaviour
                 }
             }
         }
-        else if (chance > 25)
+        else if (chance > 20)
         {
             var pattern = Random.Range(0, 2);
             
@@ -98,13 +99,13 @@ public class PathGenerator : MonoBehaviour
                     break;
             }
         }
-        else if (chance > 11)
+        else if (chance > 10)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
 
             InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
         }
-        else if(chance > 4)
+        else if(chance > 5)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
 
@@ -182,14 +183,23 @@ public class PathGenerator : MonoBehaviour
             return;
         }
 
-        if ((chance > (90 - levelChanceBonus)) && !sure1)
+        if ((chance > (88 - levelChanceBonus)) && !sure1)
         {
             Instantiate(HeartPlus2, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
-        else
+        else if ((chance > (76 - levelChanceBonus)) && !sure1)
+        {
+            Instantiate(HeartPlus3, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            return;
+        }
+        else if (chance > 2 || sure1)
         {
             Instantiate(Heart, new Vector3(x, y, -3f), Quaternion.identity);
+            return;
+        }
+        else {
+            Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
     }

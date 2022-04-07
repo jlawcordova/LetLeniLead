@@ -177,24 +177,24 @@ public class PathGenerator : MonoBehaviour
     private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
     {
         var chance = Random.Range(0f, 100f);
-        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1.5f, 1f, 20f);
+        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1f, 1f, 20f);
         if (sure2x)
         {
             Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
 
-        if ((chance > (88 - levelChanceBonus)) && !sure1)
+        if ((chance > (90 - levelChanceBonus)) && !sure1)
         {
             Instantiate(HeartPlus2, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
-        else if ((chance > (76 - levelChanceBonus)) && !sure1)
+        else if ((chance > (80 - levelChanceBonus)) && !sure1)
         {
             Instantiate(HeartPlus3, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
             return;
         }
-        else if (chance > 5 || sure1)
+        else if (chance > 6 || sure1)
         {
             Instantiate(Heart, new Vector3(x, y, -3f), Quaternion.identity);
             return;

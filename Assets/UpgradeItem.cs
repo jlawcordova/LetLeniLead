@@ -13,4 +13,8 @@ public class UpgradeItem : MonoBehaviour
     {
         ShopManager.Instance.SetSelectedUpgrade(this);
     }
+
+    public virtual void Buy()
+    {
+    }
 }

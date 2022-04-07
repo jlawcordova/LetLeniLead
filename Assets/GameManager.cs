@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public GameObject EndTransitionInstance;
     private int EndDelay = 100;
     private int EndDelayCounter = 0;
+    public int Volunteers = 0;
 
     private void Awake() 
     { 
@@ -62,7 +63,10 @@ public class GameManager : MonoBehaviour
         Speed = LevelManager.Instance.Speed;
         LevelCompetionScore = LevelManager.Instance.CompletionScore;
 
-        Instantiate(MainTransition, Canvas.transform);
+        if (Canvas != null)
+        {
+            Instantiate(MainTransition, Canvas.transform);
+        }
     }
 
     public static void SetStart()
@@ -146,6 +150,7 @@ public class GameManager : MonoBehaviour
     private static void ShowGameUI()
     {
         StartUI.Destroy();
+        ScoreManager.ScoreValue = GameManager.Instance.Volunteers;
         GameManager.Instance.GameUI = Instantiate(Instance.GameUIObject, Instance.Canvas.transform);
     }
 

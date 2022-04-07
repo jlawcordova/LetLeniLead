@@ -16,6 +16,7 @@ public static class SaveSerial
         data.TotalLevelScore = GameManager.Instance.TotalLevelScore;
         data.Level = LevelManager.Instance.Level;
         data.TotalRosas = GameManager.Instance.TotalRosas;
+        data.Volunteers = GameManager.Instance.Volunteers;
 
         bf.Serialize(file, data);
         file.Close();
@@ -37,6 +38,8 @@ public static class SaveSerial
             GameManager.Instance.TotalLevelScore = data.TotalLevelScore;
             GameManager.Instance.TotalRosas = data.TotalRosas;
             LevelManager.Instance.Level = data.Level == 0 ? 1 : data.Level;
+            GameManager.Instance.Volunteers = data.Volunteers;
+            Debug.Log("Volunteers " + GameManager.Instance.Volunteers);
         }
         else
         {
@@ -56,4 +59,5 @@ public class SaveData
     public int TotalGlobalScore;
     public int TotalLevelScore;
     public int TotalRosas;
+    public int Volunteers;
 }

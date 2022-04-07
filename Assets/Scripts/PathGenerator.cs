@@ -105,7 +105,7 @@ public class PathGenerator : MonoBehaviour
 
             InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
         }
-        else if(chance > 5)
+        else if(chance > 3)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
 
@@ -176,7 +176,7 @@ public class PathGenerator : MonoBehaviour
     private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
     {
         var chance = Random.Range(0f, 100f);
-        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 2f, 1f, 20f);
+        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1.5f, 1f, 20f);
         if (sure2x)
         {
             Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);

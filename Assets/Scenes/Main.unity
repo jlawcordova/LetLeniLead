@@ -615,6 +615,7 @@ MonoBehaviour:
   EndSpeed: 0.01
   MinY: -4.5
   MaxY: 0
+  HeartBurst: {fileID: 6481770377984551620, guid: e832a1429b6c66645bca471dad321173, type: 3}
 --- !u!95 &892520417
 Animator:
   serializedVersion: 3

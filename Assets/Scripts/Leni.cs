@@ -17,6 +17,7 @@ public class Leni : MonoBehaviour
     public float EndSpeed = 0.1f;
     public float MinY = -4.5f;
     public float MaxY = 4.5f;
+    public GameObject HeartBurst;
 
     void Awake()
     {
@@ -101,6 +102,7 @@ public class Leni : MonoBehaviour
             }
 
             var heart = hit.collider.gameObject.GetComponent<Heart>();
+            var heartBurst = Instantiate(HeartBurst, new Vector3(transform.position.x, transform.position.y, -4), HeartBurst.transform.rotation);
             var heartValue = heart.Consume();
             ScoreManager.AddScore(heartValue);
             Destroy(hit.collider.gameObject);

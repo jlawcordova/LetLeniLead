@@ -298,6 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Heart: {fileID: 8342599927381167540, guid: 6e5f07b4bd7c33e40871f91f2971f661, type: 3}
   Heart2x: {fileID: 4042462288830738460, guid: 8228f2640e1c37a42a227cd975035b10, type: 3}
+  HeartPlus2: {fileID: 3083952026035085116, guid: dc0046b4372c2a04f9c9943726f96ec3, type: 3}
   FinishLine: {fileID: 1201576377512519878, guid: 51ebea08c59c8d647a30499d78078aaa, type: 3}
   Rate: 100
   SplitY:
@@ -1220,7 +1221,7 @@ MonoBehaviour:
   LocationBackground:
   - {fileID: 100498114994045152, guid: 71de1c7bfd583f542874630d5873025b, type: 3}
   - {fileID: 2007368033057466897, guid: 8106932f353b52340bfbeb03a5238667, type: 3}
-  - {fileID: 2007368033057466897, guid: 8106932f353b52340bfbeb03a5238667, type: 3}
+  - {fileID: 2330021352530471133, guid: 3bfa1388afe55074bbdccd790ff712be, type: 3}
   LocationBackgroundInstances: []
   BackdropBackground:
   - {fileID: 7236308977748091248, guid: 87c6dccb81e498845a78bd134f261ff5, type: 3}

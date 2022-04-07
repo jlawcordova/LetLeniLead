@@ -5,6 +5,7 @@ public class PathGenerator : MonoBehaviour
 {
     public GameObject Heart;
     public GameObject Heart2x;
+    public GameObject HeartPlus2;
     public GameObject FinishLine;
 
     public float Rate = 100f;
@@ -59,7 +60,7 @@ public class PathGenerator : MonoBehaviour
 
         var chance = Random.Range(0, 100);
 
-        if (chance > 55)
+        if (chance > 45)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -81,7 +82,7 @@ public class PathGenerator : MonoBehaviour
                 }
             }
         }
-        else if (chance > 20)
+        else if (chance > 25)
         {
             var pattern = Random.Range(0, 2);
             
@@ -131,10 +132,10 @@ public class PathGenerator : MonoBehaviour
 
     private void GenerateBulk(float bulkY)
     {
-        InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
-        InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY + 0.8f);
         InstantiateRandomHeart(transform.position.x + 0.8f, transform.position.y + bulkY + 0.8f);
         InstantiateRandomHeart(transform.position.x + 0.8f, transform.position.y + bulkY);
+        InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
+        InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY + 0.8f);
     }
 
     private void GenerateDown()
@@ -174,14 +175,22 @@ public class PathGenerator : MonoBehaviour
     private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
     {
         var chance = Random.Range(0f, 100f);
-        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level *.65f, 0f, 7f);
-        if ((chance > (95 - levelChanceBonus) || sure2x) && !sure1)
+        var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 2f, 1f, 20f);
+        if (sure2x)
         {
             Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            return;
+        }
+
+        if ((chance > (90 - levelChanceBonus)) && !sure1)
+        {
+            Instantiate(HeartPlus2, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            return;
         }
         else
         {
             Instantiate(Heart, new Vector3(x, y, -3f), Quaternion.identity);
+            return;
         }
     }
 }

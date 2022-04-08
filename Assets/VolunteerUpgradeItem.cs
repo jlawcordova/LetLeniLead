@@ -6,7 +6,11 @@ public class VolunteerUpgradeItem : UpgradeItem
 {
     public override void Buy()
     {
-        Debug.Log("Buy Volunteer");
+        if (GameManager.Instance.TotalRosas < Cost)
+        {
+            return;
+        }
+
         GameManager.Instance.Volunteers++;
         GameManager.Instance.TotalRosas -= Cost;
         SaveSerial.SaveGame();

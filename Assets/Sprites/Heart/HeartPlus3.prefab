@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 37780d04dbd26c64390073546e3493d7, type: 3}
-  SoundName: Heart2x
+  SoundName: Heart
+  Style: 0
   Type: 0
   Value: 3
 --- !u!50 &2109570758178737808

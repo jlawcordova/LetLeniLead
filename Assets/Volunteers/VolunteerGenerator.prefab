@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 234856133861423770, guid: 2a218ca014bdcda4399b606ecb147fb1, type: 3}
   - {fileID: 1327279791920662129, guid: ec1e94f81c6f33545a3c334f389b1649, type: 3}
   - {fileID: 807500980404085724, guid: 9885a4e0b336eff4ca9f62280d5ce65f, type: 3}
+  - {fileID: 4254677658389642816, guid: b7c3c69ec22ad714c8503596f8f47788, type: 3}
   StartX: -11
   MinY: -4.5
   MaxY: 0

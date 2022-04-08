@@ -125,17 +125,17 @@ public class PathGenerator : MonoBehaviour
 
     private void GenerateLine()
     {
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 1f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f);
         InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f - 0.83f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 1f);
 
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 1f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f);
         InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f - 0.83f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 1f);
     }
 
     private void GenerateSpecial()
@@ -150,7 +150,7 @@ public class PathGenerator : MonoBehaviour
         InstantiateRandomHeart(transform.position.x + 1f, transform.position.y - 3.5f + 0.83f, false, true);
         InstantiateRandomHeart(transform.position.x + 2f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
 
-        var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 2) == 0);
+        var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 4) == 0);
 
         if (!times3Chance)
         {
@@ -242,7 +242,7 @@ public class PathGenerator : MonoBehaviour
             return;
         }
         else {
-            var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 2) == 0);
+            var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 3) == 0);
 
             if (!times3Chance)
             {

@@ -7,6 +7,7 @@ public class Volunteers : MonoBehaviour
     public float EndXPosition = 23f;
     public int ScoreValue = 1;
     public float Speed = 0.01f;
+    public bool Bottom = false;
 
 
     void Update()

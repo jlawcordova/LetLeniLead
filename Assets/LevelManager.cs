@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
-    private const int LevelTypeCount = 3;
+    private const int LevelTypeCount = 7;
     public LevelType LevelType
     {
         get
@@ -63,5 +63,9 @@ public enum LevelType
 {
     Naga,
     Pasig,
-    Bohol
+    Bohol,
+    Davao,
+    Samar,
+    Cebu,
+    Surigao
 }

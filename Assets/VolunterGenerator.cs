@@ -44,8 +44,8 @@ public class VolunterGenerator : MonoBehaviour
         Instantiate(volunteerGameObject,
             new Vector3(
                 StartX,
-                Random.Range(MinY, MaxY),
-                -5f),
+                volunteer.Bottom ? MinY + 0.5f : Random.Range(MinY, MaxY),
+                volunteerGameObject.transform.position.z),
             Quaternion.identity);
             AudioManager.Play("Volunteer", Sound, 1, false);
         ScoreManager.DeductScore(volunteer.ScoreValue);

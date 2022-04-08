@@ -41,7 +41,6 @@ public static class SaveSerial
             LevelManager.Instance.Level = data.Level == 0 ? 1 : data.Level;
             GameManager.Instance.Volunteers = data.Volunteers;
             GameManager.Instance.Times3Unlocked = data.Times3Unlocked;
-            Debug.Log("GameManager.Instance.Times3Unlocked " + GameManager.Instance.Times3Unlocked);
         }
         else
         {

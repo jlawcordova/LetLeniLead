@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     private int EndDelay = 100;
     private int EndDelayCounter = 0;
     public int Volunteers = 0;
+    public bool Times3Unlocked = false;
 
     private void Awake() 
     { 

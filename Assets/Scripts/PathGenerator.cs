@@ -7,6 +7,7 @@ public class PathGenerator : MonoBehaviour
     public GameObject Heart2x;
     public GameObject HeartPlus2;
     public GameObject HeartPlus3;
+    public GameObject Heart3x;
     public GameObject Rosas;
     public GameObject FinishLine;
 
@@ -84,7 +85,11 @@ public class PathGenerator : MonoBehaviour
                 }
             }
         }
-        else if (chance > 20)
+        else if (chance > 25)
+        {
+            GenerateLine();
+        }
+        else if (chance > 15)
         {
             var pattern = Random.Range(0, 2);
             
@@ -118,6 +123,21 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
+    private void GenerateLine()
+    {
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 1f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f - 0.83f);
+
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 1f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f - 0.83f);
+    }
+
     private void GenerateSpecial()
     {
         InstantiateRandomHeart(transform.position.x - 5f, transform.position.y - 1f, false, true);
@@ -129,7 +149,17 @@ public class PathGenerator : MonoBehaviour
         InstantiateRandomHeart(transform.position.x, transform.position.y - 3.5f, false, true);
         InstantiateRandomHeart(transform.position.x + 1f, transform.position.y - 3.5f + 0.83f, false, true);
         InstantiateRandomHeart(transform.position.x + 2f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
-        InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, true);
+
+        var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 2) == 0);
+
+        if (!times3Chance)
+        {
+            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, true);
+        }
+        else
+        {
+            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, false, false, true);
+        }
     }
 
     private void GenerateBulk(float bulkY)
@@ -174,10 +204,17 @@ public class PathGenerator : MonoBehaviour
         InstantiateRandomHeart(transform.position.x, y);
     }
 
-    private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
+    private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false, bool sure3x = false)
     {
         var chance = Random.Range(0f, 100f);
         var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1f, 1f, 20f);
+
+        if (sure3x)
+        {
+            Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            return;
+        }
+
         if (sure2x)
         {
             Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
@@ -205,7 +242,17 @@ public class PathGenerator : MonoBehaviour
             return;
         }
         else {
-            Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 2) == 0);
+
+            if (!times3Chance)
+            {
+                Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            }
+
             return;
         }
     }

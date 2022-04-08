@@ -20,6 +20,7 @@ public class ShopManager : MonoBehaviour
     public Image ImageImage;
     public Text DescriptionText;
     public Text CostText;
+    public GameObject Unlocked;
     
 
     void Start()
@@ -50,6 +51,8 @@ public class ShopManager : MonoBehaviour
             Destroy(UpgradePanelCover);
         }
 
+        Unlocked.SetActive(selectedUpgradeItem.Acquired);
+
         SelectedUpgradeItem = selectedUpgradeItem;
         TitleText.text = selectedUpgradeItem.Title;
         ImageImage.sprite = selectedUpgradeItem.UpgradeImage;
@@ -59,7 +62,6 @@ public class ShopManager : MonoBehaviour
 
     public void BuySelected()
     {
-        Debug.Log("SelectedUpgradeItem " + SelectedUpgradeItem);
         SelectedUpgradeItem.Buy();
         RosasShopUIText.text = GameManager.Instance.TotalRosas.ToString();
     }

@@ -13,6 +13,7 @@ public class VolunteerUpgradeItem : UpgradeItem
 
         GameManager.Instance.Volunteers++;
         GameManager.Instance.TotalRosas -= Cost;
+        AudioManager.Play("Buy", BuySound, 1, false, 0.8f);
         SaveSerial.SaveGame();
     }
 }

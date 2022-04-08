@@ -8,6 +8,8 @@ public class UpgradeItem : MonoBehaviour
     public string Title;
     public string Description;
     public int Cost;
+    public bool Acquired = false;
+    public AudioClip BuySound;
 
     public void OnClick()
     {

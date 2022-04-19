@@ -65,7 +65,7 @@ public class Leni : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {   
         if (GameManager.GameState == GameState.End)
         {

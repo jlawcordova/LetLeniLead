@@ -10,7 +10,7 @@ public class Volunteers : MonoBehaviour
     public bool Bottom = false;
 
 
-    void Update()
+    void FixedUpdate()
     {
         transform.position = new Vector3(
             Mathf.MoveTowards(transform.position.x, EndXPosition, Speed),

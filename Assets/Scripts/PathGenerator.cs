@@ -32,11 +32,12 @@ public class PathGenerator : MonoBehaviour
             return;
         }
 
-        if (PathCounter > MaxPathCount)
-        {
-            GenerateFinishLine();
-            Destroy(gameObject);
-        }
+        // Never end.
+        // if (PathCounter > MaxPathCount)
+        // {
+        //     GenerateFinishLine();
+        //     Destroy(gameObject);
+        // }
 
         if(Counter > Rate)
         {

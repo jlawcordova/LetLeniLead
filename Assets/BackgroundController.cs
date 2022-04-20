@@ -8,14 +8,24 @@ public class BackgroundController : MonoBehaviour
     public float StartXPosition = 21.5f;
     public float EndXPosition = -21.5f;
 
+    #region Location Roller
+
+    public int MaxLocationDuration = 4;
+    private int LocationDurationCounter = 0;
+    private int CurrentLocation = 0;
+
+    #endregion
+
     public GameObject[] RoadBackground;
     public List<GameObject> RoadBackgroundInstances = new List<GameObject>();
     public Dictionary<GameObject, bool> RoadBackgroundReplaced = new Dictionary<GameObject, bool>();
 
+    public GameObject TransitionLocationBackground;
     public GameObject[] LocationBackground;
     public List<GameObject> LocationBackgroundInstances = new List<GameObject>();
     public Dictionary<GameObject, bool> LocationBackgroundReplaced = new Dictionary<GameObject, bool>();
 
+    public GameObject TransitionBackdropBackground;
     public GameObject[] BackdropBackground;
     public List<GameObject> BackdropBackgroundInstances = new List<GameObject>();
     public Dictionary<GameObject, bool> BackdropBackgroundReplaced = new Dictionary<GameObject, bool>();
@@ -131,21 +141,69 @@ public class BackgroundController : MonoBehaviour
 
     private void InstantiateLocation(float initialXPosition)
     {
-        var locationIndex = LevelManager.Instance.LevelTypeIndex;
-        var locationBackgroundGameObject = LocationBackground[locationIndex];
-
+        // Set a transition if location is almost done.
+        // Otherwise just show the location.
+        GameObject locationBackgroundGameObject;
+        if (LocationDurationCounter >= MaxLocationDuration - 1)
+        {
+            locationBackgroundGameObject = TransitionLocationBackground;
+        }
+        else
+        {
+            // Create the current location.
+            var locationIndex = CurrentLocation;
+            locationBackgroundGameObject = LocationBackground[locationIndex];
+        }
         var locationBackgroundInstance = Instantiate(locationBackgroundGameObject, 
             new Vector3(
                 initialXPosition, locationBackgroundGameObject.transform.position.y, locationBackgroundGameObject.transform.position.z),
             Quaternion.identity);
         LocationBackgroundInstances.Add(locationBackgroundInstance);
         LocationBackgroundReplaced.Add(locationBackgroundInstance, false);
+
+        // Don't change location if the game hasn't started yet.
+        if (GameManager.GameState == GameState.Start)
+        {
+            return;
+        }
+
+        // Replace the location after a certain period.
+        LocationDurationCounter++;
+        if (LocationDurationCounter > MaxLocationDuration)
+        {
+            ReplaceLocation();
+        }
+    }
+
+    private void ReplaceLocation()
+    {
+        // Look for a location that isn't the current one.
+        // Set that as the new location.
+        int tempCurrentLocation;
+        do 
+        {
+            tempCurrentLocation = Random.Range(0, LevelManager.Instance.LevelTypeIndex);
+        } while (CurrentLocation == tempCurrentLocation);
+
+        CurrentLocation = tempCurrentLocation;
+        LocationDurationCounter = 0;
     }
 
     private void InstantiateBackdrop(float initialXPosition)
     {
-        var backdropIndex = LevelManager.Instance.LevelTypeIndex;
-        var backdropBackgroundGameObject = BackdropBackground[backdropIndex];
+        // Set a transition if location is almost done.
+        // Otherwise just show the location.
+        GameObject backdropBackgroundGameObject;
+        if (LocationDurationCounter >= MaxLocationDuration - 1|| LocationDurationCounter == 0)
+        {
+            backdropBackgroundGameObject = TransitionBackdropBackground;
+        }
+        else
+        {
+            // Create the current location.
+            var backdropIndex = CurrentLocation;
+            backdropBackgroundGameObject = BackdropBackground[backdropIndex];
+        }
 
         var backdropBackgroundInstance = Instantiate(backdropBackgroundGameObject, 
             new Vector3(

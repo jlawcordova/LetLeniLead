@@ -1392,9 +1392,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartXPosition: 23
   EndXPosition: -23
+  MaxLocationDuration: 6
   RoadBackground:
   - {fileID: 2558886788537925710, guid: 44a9e630b5afb9e4ba8abe8b6f458539, type: 3}
   RoadBackgroundInstances: []
+  TransitionLocationBackground: {fileID: 1256775372973258218, guid: bb7103349adb55249a8b2565c97d2b5e, type: 3}
   LocationBackground:
   - {fileID: 100498114994045152, guid: 71de1c7bfd583f542874630d5873025b, type: 3}
   - {fileID: 2007368033057466897, guid: 8106932f353b52340bfbeb03a5238667, type: 3}
@@ -1404,6 +1406,7 @@ MonoBehaviour:
   - {fileID: 2007368033057466897, guid: 8106932f353b52340bfbeb03a5238667, type: 3}
   - {fileID: 2330021352530471133, guid: 3bfa1388afe55074bbdccd790ff712be, type: 3}
   LocationBackgroundInstances: []
+  TransitionBackdropBackground: {fileID: 7236308977748091248, guid: 87c6dccb81e498845a78bd134f261ff5, type: 3}
   BackdropBackground:
   - {fileID: 7236308977748091248, guid: 87c6dccb81e498845a78bd134f261ff5, type: 3}
   - {fileID: 8070253186888883663, guid: db698956beb39f84c8d9120ea32d35c9, type: 3}

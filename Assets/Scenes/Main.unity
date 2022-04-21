@@ -215,8 +215,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2098392324}
-  - {fileID: 1012966125}
   - {fileID: 1467674007}
+  - {fileID: 1012966125}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -259,6 +259,9 @@ MonoBehaviour:
   HeartPlus2: {fileID: 3083952026035085116, guid: dc0046b4372c2a04f9c9943726f96ec3, type: 3}
   HeartPlus3: {fileID: 6555813942877113730, guid: f2c0410d7e6855a4fbc757b3027a77ff, type: 3}
   Heart3x: {fileID: 7046040721091583906, guid: e4b39e01222787a43b6e42fe6fc86d5c, type: 3}
+  Energy:
+  - {fileID: 912854232330382128, guid: a4f3bf7dc8209354dae1fe6498b631ed, type: 3}
+  - {fileID: 7809111174097581538, guid: 08ced3341a034df43b5733a03179c1e3, type: 3}
   Rosas: {fileID: 2478357691590238084, guid: e57b26be7420f0e4b9b20a75fc7006f5, type: 3}
   FinishLine: {fileID: 1201576377512519878, guid: 51ebea08c59c8d647a30499d78078aaa, type: 3}
   Rate: 100
@@ -271,6 +274,8 @@ MonoBehaviour:
   - -1.84
   - -1
   MaxPathCount: 5
+  EnergyPityTimer: 700
+  EnergyPityTimerCounter: 0
 --- !u!4 &71461688
 Transform:
   m_ObjectHideFlags: 0
@@ -784,6 +789,10 @@ MonoBehaviour:
   MinY: -4.5
   MaxY: 0
   HeartBurst: {fileID: 6481770377984551620, guid: e832a1429b6c66645bca471dad321173, type: 3}
+  MaxEnergy: 3
+  Energy: 0
+  EnergyDuration: 350
+  EnergyDurationCounter: 0
 --- !u!95 &892520417
 Animator:
   serializedVersion: 3
@@ -896,12 +905,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914099, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068878673656914099, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068878673656914099, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.12
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914099, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.24
+      value: 1.08
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4068878673656914096, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
@@ -921,7 +938,7 @@ RectTransform:
   - {fileID: 289380674}
   - {fileID: 102757329}
   m_Father: {fileID: 56537895}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1392,6 +1409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartXPosition: 23
   EndXPosition: -23
+  Canvas: {fileID: 56537891}
+  LocationBanner: {fileID: 6817903058680957993, guid: 2da2a4e8e6881c1458282a4a2306864c, type: 3}
   MaxLocationDuration: 6
   RoadBackground:
   - {fileID: 2558886788537925710, guid: 44a9e630b5afb9e4ba8abe8b6f458539, type: 3}
@@ -1746,7 +1765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6976300702801042459, guid: b27caeadc5ffc0c489d53d45c38ecde9, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6976300702801042459, guid: b27caeadc5ffc0c489d53d45c38ecde9, type: 3}
       propertyPath: m_AnchorMax.x

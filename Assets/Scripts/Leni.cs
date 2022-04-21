@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,13 @@ public class Leni : MonoBehaviour
     public float MaxY = 4.5f;
     public GameObject HeartBurst;
 
+    #region Energy
+    public int MaxEnergy = 5;
+    public int Energy = 0;
+    public int EnergyDuration = 10000;
+    public int EnergyDurationCounter = 0;
+    #endregion
+
     void Awake()
     {
         touchMover = InputManager.Instance;
@@ -34,6 +42,11 @@ public class Leni : MonoBehaviour
     {
         touchMover.OnStartTouch -= p => SetMove(p);
         touchMover.OnCancelTouch -= StopMove;
+    }
+
+    void Start()
+    {
+        Energy = MaxEnergy;
     }
 
     void SetMove(Vector2 startTouchPosition)
@@ -86,7 +99,23 @@ public class Leni : MonoBehaviour
             MoveY(touchMover.YTargetPosition);
         }
 
+        HandleEnergyDepletion();
         HandleHeartCollision();
+    }
+
+    private void HandleEnergyDepletion()
+    {
+        EnergyDurationCounter++;
+
+        if (EnergyDurationCounter >= EnergyDuration)
+        {
+            Energy--;
+            EnergyDurationCounter = 0;
+            if (Energy <= 0)
+            {
+                GameManager.SetEnd();
+            }
+        }
     }
 
     void HandleHeartCollision()
@@ -110,6 +139,9 @@ public class Leni : MonoBehaviour
             } else if (heartValue.Style == HeartStyle.Rosas)
             {
                 GameManager.Instance.TotalRosas++;
+            } else if (heartValue.Style == HeartStyle.Energy)
+            {
+                Energy = Mathf.Clamp(Energy + 1, 0, MaxEnergy);
             }
             Destroy(hit.collider.gameObject);
         }

@@ -8,6 +8,9 @@ public class BackgroundController : MonoBehaviour
     public float StartXPosition = 21.5f;
     public float EndXPosition = -21.5f;
 
+    public GameObject Canvas;
+    public GameObject LocationBanner;
+
     #region Location Roller
 
     public int MaxLocationDuration = 4;
@@ -167,12 +170,26 @@ public class BackgroundController : MonoBehaviour
             return;
         }
 
+        if (LocationDurationCounter == 0)
+        {
+            ShowLocationBanner();
+        }
+
         // Replace the location after a certain period.
+        // While also increasing the difficulty.
         LocationDurationCounter++;
         if (LocationDurationCounter > MaxLocationDuration)
         {
             ReplaceLocation();
+            GameManager.IncreaseSpeed();
         }
+    }
+
+    private void ShowLocationBanner()
+    {
+        var locationBanner = LocationBanner.GetComponent<LocationBanner>();
+        locationBanner.LevelTypeIndex = CurrentLocation;
+        Instantiate(LocationBanner, Canvas.transform);
     }
 
     private void ReplaceLocation()
@@ -194,7 +211,7 @@ public class BackgroundController : MonoBehaviour
         // Set a transition if location is almost done.
         // Otherwise just show the location.
         GameObject backdropBackgroundGameObject;
-        if (LocationDurationCounter >= MaxLocationDuration - 1|| LocationDurationCounter == 0)
+        if (LocationDurationCounter >= MaxLocationDuration || LocationDurationCounter == 0)
         {
             backdropBackgroundGameObject = TransitionBackdropBackground;
         }

@@ -8,6 +8,7 @@ public class PathGenerator : MonoBehaviour
     public GameObject HeartPlus2;
     public GameObject HeartPlus3;
     public GameObject Heart3x;
+    public GameObject[] Energy;
     public GameObject Rosas;
     public GameObject FinishLine;
 
@@ -18,6 +19,13 @@ public class PathGenerator : MonoBehaviour
     private float Counter = 0f;
     private int PathCounter = 0;
     public int MaxPathCount = 5;
+
+    #region Energy
+
+    public int EnergyPityTimer = 700;
+    public int EnergyPityTimerCounter = 0;
+
+    #endregion
 
     void Start()
     {
@@ -46,6 +54,19 @@ public class PathGenerator : MonoBehaviour
         }
 
         Counter++;
+
+        HandleEnergyPityTimer();
+    }
+
+    private void HandleEnergyPityTimer()
+    {
+        EnergyPityTimerCounter++;
+
+        if (EnergyPityTimerCounter >= EnergyPityTimer)
+        {
+            EnergyPityTimerCounter = 0;
+            InstantiateEnergy(transform.position.x, -2.5f, -4f, true);
+        }
     }
 
     private void GenerateFinishLine()
@@ -55,12 +76,12 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePath()
     {
-        PathCounter++;
+        // PathCounter++;
 
-        if (PathCounter > MaxPathCount)
-        {
-            return;
-        }
+        // if (PathCounter > MaxPathCount)
+        // {
+        //     return;
+        // }
 
         var chance = Random.Range(0, 100);
 
@@ -106,21 +127,25 @@ public class PathGenerator : MonoBehaviour
                     break;
             }
         }
-        else if (chance > 10)
+        else if (chance > 11)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
-
             InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
         }
-        else if(chance > 3)
+        else if (chance > 5)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
 
             GenerateBulk(bulkY);
         }
-        else 
+        else if(chance > 2)
         {
             GenerateSpecial();
+        }
+        else 
+        {
+            var bulkY = BulkY[Random.Range(0, BulkY.Length)];
+            InstantiateEnergy(transform.position.x, transform.position.y + bulkY, -4f);
         }
     }
 
@@ -205,56 +230,78 @@ public class PathGenerator : MonoBehaviour
         InstantiateRandomHeart(transform.position.x, y);
     }
 
+    private void InstantiateEnergy(float x, float y, float z, bool sureBouncing = false,
+        bool sureStatic = true)
+    {
+        // Check if the energy should be bouncing.
+        // If it is, use the first energy game object which bounces.
+        var energyIndex = sureBouncing ? 0 :
+            sureStatic ? 1 :
+            Random.Range(0, Energy.Length);
+
+        Instantiate(Energy[energyIndex], new Vector3(x, y, z), Quaternion.identity);
+    }
+
     private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false, bool sure3x = false)
     {
-        var chance = Random.Range(0f, 100f);
+        var chance = Random.Range(0f, 150f);
         var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1f, 1f, 20f);
 
         if (sure3x)
         {
-            Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             return;
         }
 
         if (sure2x)
         {
-            Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             return;
         }
 
-        if ((chance > (90 - levelChanceBonus)) && !sure1)
+        
+        if (chance > 100 || sure1)
         {
-            Instantiate(HeartPlus2, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            Instantiate(Heart, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
+            return;
+        }
+        else if ((chance > (90 - levelChanceBonus)) && !sure1)
+        {
+            Instantiate(HeartPlus2, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             return;
         }
         else if ((chance > (80 - levelChanceBonus)) && !sure1)
         {
-            Instantiate(HeartPlus3, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+            Instantiate(HeartPlus3, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             return;
         }
-        else if (chance > 6 || sure1)
+        else if (chance > 5)
         {
-            Instantiate(Heart, new Vector3(x, y, -3f), Quaternion.identity);
+            Instantiate(Heart, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
             return;
         }
         else if (chance > 2)
         {
-            Instantiate(Rosas, new Vector3(x, y, -3f), Quaternion.identity);
+            Instantiate(Rosas, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
             return;
         }
-        else {
+        else if (chance > 1){
             var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 3) == 0);
 
             if (!times3Chance)
             {
-                Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+                Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             }
             else
             {
-                Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f), Quaternion.identity);
+                Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             }
 
             return;
+        }
+        else
+        {
+            InstantiateEnergy(x, y, -4f, false, true);
         }
     }
 }

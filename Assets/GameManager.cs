@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
         GameManager.Instance.TransitionAnimator.SetBool("IsTransitioning", true);
     }
 
+    public static void IncreaseSpeed()
+    {
+        GameManager.Instance.Speed += 0.01f;
+    }
+
     void FixedUpdate()
     {
         if (HeartStreakTimer > 0)

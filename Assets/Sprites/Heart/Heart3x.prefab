@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -99530105486826581, guid: df8d6c45ca9194e4786ecd81caab4569, type: 3}
+  m_Sprite: {fileID: -99530105486826581, guid: b5849f34eec513342b40b549fb4ede08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.36, y: 0.72}
+  m_Size: {x: 0.44, y: 1.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -118,7 +118,10 @@ MonoBehaviour:
   SoundName: Heart3x
   Style: 0
   Type: 1
-  Value: 3
+  Movement: 0
+  SpeedX: 0.1
+  SpeedY: 0.1
+  Value: 2
 --- !u!50 &2771065975903886512
 Rigidbody2D:
   serializedVersion: 4

@@ -4,7 +4,6 @@ using UnityEngine;
 public class PathGenerator : MonoBehaviour
 {
     public GameObject Heart;
-    public GameObject Heart2x;
     public GameObject HeartPlus2;
     public GameObject HeartPlus3;
     public GameObject Heart3x;
@@ -132,7 +131,7 @@ public class PathGenerator : MonoBehaviour
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
             InstantiateRandomHeart(transform.position.x, transform.position.y + bulkY);
         }
-        else if (chance > 5)
+        else if (chance > 4)
         {
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
 
@@ -176,15 +175,13 @@ public class PathGenerator : MonoBehaviour
         InstantiateRandomHeart(transform.position.x + 1f, transform.position.y - 3.5f + 0.83f, false, true);
         InstantiateRandomHeart(transform.position.x + 2f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
 
-        var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 4) == 0);
-
-        if (!times3Chance)
+        if (!GameManager.Instance.Times3Unlocked)
         {
-            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, true);
+            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, false, true);
         }
         else
         {
-            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, false, false, true);
+            InstantiateRandomHeart(transform.position.x + 3f, transform.position.y - 1f, true);
         }
     }
 
@@ -242,20 +239,14 @@ public class PathGenerator : MonoBehaviour
         Instantiate(Energy[energyIndex], new Vector3(x, y, z), Quaternion.identity);
     }
 
-    private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false, bool sure3x = false)
+    private void InstantiateRandomHeart(float x, float y, bool sure2x = false, bool sure1 = false)
     {
         var chance = Random.Range(0f, 150f);
         var levelChanceBonus = Mathf.Clamp(LevelManager.Instance.Level * 1f, 1f, 20f);
 
-        if (sure3x)
-        {
-            Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
-            return;
-        }
-
         if (sure2x)
         {
-            Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
+            Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             return;
         }
 
@@ -286,17 +277,14 @@ public class PathGenerator : MonoBehaviour
             return;
         }
         else if (chance > 1){
-            var times3Chance = GameManager.Instance.Times3Unlocked && (Random.Range(0, 3) == 0);
-
-            if (!times3Chance)
+            if (!GameManager.Instance.Times3Unlocked)
             {
-                Instantiate(Heart2x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
+                Instantiate(Heart, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
             }
             else
             {
                 Instantiate(Heart3x, new Vector3(x, y + 0.36f, -3f + (0.1f * (y + 0.36f))), Quaternion.identity);
             }
-
             return;
         }
         else

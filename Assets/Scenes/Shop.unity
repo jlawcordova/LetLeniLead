@@ -858,7 +858,7 @@ MonoBehaviour:
   UpgradeImage: {fileID: 21300000, guid: 6c8df87cc4e6c52448cd8856a39fc398, type: 3}
   Title: Angat Buhay
   Description: Maraming mahihirap ang natulungan ng Angat Buhay program ni VP Leni.
-    May chance na lumabas ang 3x heart.
+    May chance na lumabas ang 2x heart.
   Cost: 30
   Acquired: 0
   BuySound: {fileID: 8300000, guid: b329e1169fea3264782f4af9123efb8f, type: 3}

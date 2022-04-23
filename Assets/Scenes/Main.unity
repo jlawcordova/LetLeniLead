@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Heart: {fileID: 8342599927381167540, guid: 6e5f07b4bd7c33e40871f91f2971f661, type: 3}
-  Heart2x: {fileID: 4042462288830738460, guid: 8228f2640e1c37a42a227cd975035b10, type: 3}
   HeartPlus2: {fileID: 3083952026035085116, guid: dc0046b4372c2a04f9c9943726f96ec3, type: 3}
   HeartPlus3: {fileID: 6555813942877113730, guid: f2c0410d7e6855a4fbc757b3027a77ff, type: 3}
   Heart3x: {fileID: 7046040721091583906, guid: e4b39e01222787a43b6e42fe6fc86d5c, type: 3}
@@ -732,7 +731,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_LocalScale.x
@@ -1037,7 +1036,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1784480591
 MonoBehaviour:

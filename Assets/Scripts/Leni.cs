@@ -21,7 +21,7 @@ public class Leni : MonoBehaviour
     public GameObject HeartBurst;
 
     #region Energy
-    public int MaxEnergy = 5;
+    public static int MaxEnergy = 3;
     public int Energy = 0;
     public int EnergyDuration = 10000;
     public int EnergyDurationCounter = 0;
@@ -109,7 +109,7 @@ public class Leni : MonoBehaviour
 
         if (EnergyDurationCounter >= EnergyDuration)
         {
-            Energy--;
+            RemoveEnergy();
             EnergyDurationCounter = 0;
             if (Energy <= 0)
             {
@@ -117,6 +117,20 @@ public class Leni : MonoBehaviour
             }
         }
     }
+
+    private void RemoveEnergy()
+    {
+        Energy--;
+        EnergyBar.Instance.SetEnergy(Energy);
+    }
+
+    private void AddEnergy()
+    {
+        Energy = Mathf.Clamp(Energy + 1, 0, MaxEnergy);
+        EnergyDurationCounter = 0;
+        EnergyBar.Instance.SetEnergy(Energy);
+    }
+
 
     void HandleHeartCollision()
     {
@@ -141,7 +155,7 @@ public class Leni : MonoBehaviour
                 GameManager.Instance.TotalRosas++;
             } else if (heartValue.Style == HeartStyle.Energy)
             {
-                Energy = Mathf.Clamp(Energy + 1, 0, MaxEnergy);
+                AddEnergy();
             }
             Destroy(hit.collider.gameObject);
         }

@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     public GameObject MainTransition;
     public GameObject EndTransition;
     public float Speed = -0.1f;
+
+    #region Freeze
+    public bool Frozen = false;
+    private float CurrentSpeed = 0;
+    #endregion 
     private bool EndUIShown = false;
     public Animator TransitionAnimator;
     public GameObject GameUI;
@@ -43,7 +48,6 @@ public class GameManager : MonoBehaviour
     private int EndDelayCounter = 0;
     public int Volunteers = 0;
     public bool Times3Unlocked = false;
-
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 
@@ -70,6 +74,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Freeze()
+    {
+        CurrentSpeed = Speed;
+        Speed = 0f;
+        Frozen = true;
+    }
+
+    public void Unfreeze()
+    {
+        Speed = CurrentSpeed;
+        Frozen = false;
+    }
+
+
     public static void SetStart()
     {
         ScoreManager.ResetScore();
@@ -85,6 +103,11 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         if (HeartStreakTimer > 0)
         {
             HeartStreakTimer--;

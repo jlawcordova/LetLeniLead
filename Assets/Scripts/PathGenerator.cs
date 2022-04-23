@@ -9,6 +9,7 @@ public class PathGenerator : MonoBehaviour
     public GameObject Heart3x;
     public GameObject[] Energy;
     public GameObject Rosas;
+    public GameObject PowerUp;
     public GameObject FinishLine;
 
     public float Rate = 100f;
@@ -35,6 +36,11 @@ public class PathGenerator : MonoBehaviour
     void FixedUpdate()
     {
         if(GameManager.GameState != GameState.Game)
+        {
+            return;
+        }
+
+        if (GameManager.Instance.Frozen)
         {
             return;
         }
@@ -75,17 +81,11 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePath()
     {
-        // PathCounter++;
-
-        // if (PathCounter > MaxPathCount)
-        // {
-        //     return;
-        // }
-
         var chance = Random.Range(0, 100);
 
         if (chance > 40)
         {
+            InstantiatePowerUp(transform.position.x, 0f);
             for (int i = 0; i < 2; i++)
             {
                 var pattern = (Pattern)Random.Range(0, 3);
@@ -146,6 +146,11 @@ public class PathGenerator : MonoBehaviour
             var bulkY = BulkY[Random.Range(0, BulkY.Length)];
             InstantiateEnergy(transform.position.x, transform.position.y + bulkY, -4f);
         }
+    }
+
+    private void InstantiatePowerUp(float x, float y)
+    {
+        Instantiate(PowerUp, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
     }
 
     private void GenerateLine()

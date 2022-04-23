@@ -261,6 +261,7 @@ MonoBehaviour:
   - {fileID: 912854232330382128, guid: a4f3bf7dc8209354dae1fe6498b631ed, type: 3}
   - {fileID: 7809111174097581538, guid: 08ced3341a034df43b5733a03179c1e3, type: 3}
   Rosas: {fileID: 2478357691590238084, guid: e57b26be7420f0e4b9b20a75fc7006f5, type: 3}
+  PowerUp: {fileID: 3589266067492822857, guid: 0f77782bfa0f39541b3a950221e8066a, type: 3}
   FinishLine: {fileID: 1201576377512519878, guid: 51ebea08c59c8d647a30499d78078aaa, type: 3}
   Rate: 100
   SplitY:
@@ -747,7 +748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4068878673656914093, guid: 360f4ebd5c0adb54d9f6d105fafbe97d, type: 3}
       propertyPath: m_LocalPosition.y

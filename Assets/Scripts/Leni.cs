@@ -80,6 +80,11 @@ public class Leni : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {   
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         if (GameManager.GameState == GameState.End)
         {
             transform.position = new Vector3(
@@ -141,6 +146,13 @@ public class Leni : MonoBehaviour
             if (hit.collider.gameObject.tag == "Finish")
             {
                 GameManager.SetEnd();
+                return;
+            }
+
+            if (hit.collider.gameObject.tag == "PowerUp")
+            {
+                var powerUp = hit.collider.gameObject.GetComponent<PowerUp>();
+                powerUp.Consume();
                 return;
             }
 

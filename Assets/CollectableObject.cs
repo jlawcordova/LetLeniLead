@@ -12,6 +12,11 @@ public class CollectableObject : MonoBehaviour
 
     private void Move()
     {
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         transform.position -= new Vector3(GameManager.Instance.Speed, 0, 0);
 
         if (transform.position.x < -15f)

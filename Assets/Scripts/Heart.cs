@@ -41,6 +41,11 @@ public class Heart : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         HandleEdge();
         HandleBounce();
     }

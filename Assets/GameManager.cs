@@ -87,7 +87,6 @@ public class GameManager : MonoBehaviour
         Frozen = false;
     }
 
-
     public static void SetStart()
     {
         ScoreManager.ResetScore();

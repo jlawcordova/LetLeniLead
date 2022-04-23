@@ -196,10 +196,16 @@ public class BackgroundController : MonoBehaviour
     {
         // Look for a location that isn't the current one.
         // Set that as the new location.
-        int tempCurrentLocation;
+        int tempCurrentLocation = 0;
+        int attempts = 0;
         do 
         {
             tempCurrentLocation = Random.Range(0, LevelManager.Instance.LevelTypeIndex);
+            attempts++;
+            if (attempts > 3)
+            {
+                break;
+            }
         } while (CurrentLocation == tempCurrentLocation);
 
         CurrentLocation = tempCurrentLocation;

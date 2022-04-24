@@ -26,6 +26,7 @@ public class LevelProgressBar : MonoBehaviour
     public AudioClip ProgressSound;
     public AudioClip LevelupSound;
     private bool ProgressComplete = false;
+    private int Incrementor = 1;
 
     private void Awake() 
     { 
@@ -64,7 +65,8 @@ public class LevelProgressBar : MonoBehaviour
         {
             if (Counter >= Rate)
             {
-                PreviousScore++;
+                PreviousScore = Mathf.Clamp(PreviousScore + Incrementor, 0, CurrentScore) ;
+                Incrementor++;
 
                 if (PreviousScore <= CompletionScore)
                 {
@@ -74,6 +76,8 @@ public class LevelProgressBar : MonoBehaviour
 
                 if (PreviousScore >= CompletionScore && !ProgressComplete)
                 {
+                    PreviousScore = Mathf.Clamp(PreviousScore, 0, CompletionScore) ;
+                    PreviousScoreText.text = PreviousScore.ToString();
                     AudioManager.Play("LevelUp", LevelupSound, 1.4f, false, 0.8f);
                     NextLevelText.text = "PASOK NA SA NEXT LEVEL!";
                     ProgressComplete = true;

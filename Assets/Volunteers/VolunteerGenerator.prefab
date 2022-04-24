@@ -64,3 +64,6 @@ MonoBehaviour:
   MinY: -4.5
   MaxY: 0
   Sound: {fileID: 8300000, guid: 3fa60148ff951b74d8da360b48e393ea, type: 3}
+  SkipButton: {fileID: 7855588881930128954, guid: 387db1ebfad1b8c48b622b77e4a8f6b3, type: 3}
+  VolunteerCount: 0
+  VolunteerCountToSkip: 10

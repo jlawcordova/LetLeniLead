@@ -382,7 +382,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 86a0fcca8429dfb4d883abafd7e0ac95, type: 3}
-    m_FontSize: 48
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -393,9 +393,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: Isa sa plataporma ni VP Leni Robredo ang i-develop ang maritime industry.
-    Pararamihin at pahuhusayin pa niya ang Pilipinong marino, at palalakasin niya
-    ang shipbuilding sa bansa.
+  m_Text: Plano ni VP Leni Robredo na i-mandato ang pag-prioritize sa mga maliliit
+    na negosyo at magsasaka kung may kailangan bilhin ang gobyerno.
 --- !u!222 &1173022417
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -469,6 +468,29 @@ MonoBehaviour:
   - Isa sa plataporma ni VP Leni Robredo ang i-develop ang maritime industry. Pararamihin
     at pahuhusayin pa niya ang Pilipinong marino, at palalakasin niya ang shipbuilding
     sa bansa.
+  - Kasama ang partner na 'Kaya Natin!', nakapagbahagi ang 'Angat Buhay' program
+    ni VP Leni Robredo ng mahigit 14 million pesos na halaga ng food packs para sa
+    mga health worker at iba pang frontliner.
+  - Nakatulong ang Community Learning Hubs ng OVP ni Leni Robredo sa mga estudyante
+    na makapag-aral nang ligtas at may kalidad sa gitna ng pandemya.
+  - Gusto ni VP Leni Robredo na ipasa ang SOGIE bill para sa kapakanan ng mga miyembro
+    ng LGBTQ community. Isa siya sa authors nito sa 16th congress.
+  - 33.5 million pesos na halaga ng resources ang na-mobilize ng OVP ni Leni Robredo
+    para mabigyan ang 7691 na mga magsasaka at mangingisda ng magandang pangkabuhayan.
+  - Merong mga deaf interpreters sa mga rallies ni VP Leni Robredo. Pinapakita lang
+    nito ang effort niya na magkaroon din ng access ang mga deaf people sa kanyang
+    mga plano. #ParaSaLahat
+  - Mahigit 8.8 million pesos na halaga ng donations ang nakolekta at naipamahagi
+    ng OVP ni Leni Robredo para sa mga naapektohan ng pagputok ng Taal Volcano.
+  - Nasa 92600 lightbulbs ang naipamahagi ng OVP ni Leni Robredo para sa mga bahay
+    sa Metro Manila. Literally #LiwanagSaDilim.
+  - Nag-author at naipasa ni Leni Robredo ang 'Tax Incentives Management and Transparency
+    Act' noong siya pa ay representative sa 3rd District ng Camarines Sur sa 16th
+    congress.
+  - Isinusulong ni VP Leni Robredo na bawat bata, may kalidad na edukasyon na magdadala
+    ng kanilang pangarap na trabaho.
+  - Plano ni VP Leni Robredo na i-mandato ang pag-prioritize sa mga maliliit na negosyo
+    at magsasaka kung may kailangan bilhin ang gobyerno.
 --- !u!1 &1303606670
 GameObject:
   m_ObjectHideFlags: 0

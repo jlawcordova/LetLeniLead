@@ -33,7 +33,8 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            return Mathf.Clamp(0.1f * (1 + (Level * 0.1f)), 0.1f, 0.35f);
+            var level = 6;
+            return Mathf.Clamp(0.1f * (1 + ((level) * 0.1f)), 0.1f, 0.35f);
         }
     }
 

@@ -27,6 +27,13 @@ public class PathGenerator : MonoBehaviour
 
     #endregion
 
+    #region PowerUp
+
+    public int PowerUpTimer = 1500;
+    public int PowerUpTimerCounter = 0;
+
+    #endregion
+
     void Start()
     {
         MaxPathCount = 5 + Mathf.Clamp(LevelManager.Instance.Level, 1, 5);
@@ -61,6 +68,7 @@ public class PathGenerator : MonoBehaviour
         Counter++;
 
         HandleEnergyPityTimer();
+        HandlePowerUpTimer();
     }
 
     private void HandleEnergyPityTimer()
@@ -74,6 +82,11 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
+    private void HandlePowerUpTimer()
+    {
+        PowerUpTimerCounter++;
+    }
+
     private void GenerateFinishLine()
     {
         Instantiate(FinishLine, new Vector3(transform.position.x, -2.25f, -3f), Quaternion.identity);
@@ -83,27 +96,19 @@ public class PathGenerator : MonoBehaviour
     {
         var chance = Random.Range(0, 100);
 
-        if (chance > 40)
+        if (chance > 60)
         {
-            InstantiatePowerUp(transform.position.x, 0f);
-            for (int i = 0; i < 2; i++)
+            GenerateSplit();
+        }
+        else if (chance > 40)
+        {
+            if (PowerUpTimerCounter > PowerUpTimer)
             {
-                var pattern = (Pattern)Random.Range(0, 3);
-
-                switch (pattern)
-                {
-                    case Pattern.Single:
-                        GenerateSingle(transform.position.y + SplitY[i]);
-                        break;
-                    case Pattern.Double:
-                        GenerateDouble(transform.position.y + SplitY[i]);
-                        break;
-                    case Pattern.Triple:
-                        GenerateTriple(transform.position.y + SplitY[i]);
-                        break;
-                    default:
-                        break;
-                }
+                InstantiatePowerUp(transform.position.x);
+            }
+            else
+            {
+                GenerateSplit();
             }
         }
         else if (chance > 25)
@@ -148,9 +153,34 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
-    private void InstantiatePowerUp(float x, float y)
+    private void GenerateSplit()
     {
+        for (int i = 0; i < 2; i++)
+        {
+            var pattern = (Pattern)Random.Range(0, 3);
+
+            switch (pattern)
+            {
+                case Pattern.Single:
+                    GenerateSingle(transform.position.y + SplitY[i]);
+                    break;
+                case Pattern.Double:
+                    GenerateDouble(transform.position.y + SplitY[i]);
+                    break;
+                case Pattern.Triple:
+                    GenerateTriple(transform.position.y + SplitY[i]);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void InstantiatePowerUp(float x)
+    {
+        var y = BulkY[Random.Range(0, BulkY.Length)];
         Instantiate(PowerUp, new Vector3(x, y, -3f + (0.1f * (y))), Quaternion.identity);
+        PowerUpTimerCounter = 0;
     }
 
     private void GenerateLine()

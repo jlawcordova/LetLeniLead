@@ -7,6 +7,7 @@ using UnityEngine;
 [DefaultExecutionOrder(0)]
 public class Leni : MonoBehaviour
 {
+    public static Leni Instance { get; private set; }
     InputManager touchMover;
     public GameObject MainCamera;
     public bool IsMoving = false;
@@ -30,6 +31,15 @@ public class Leni : MonoBehaviour
     void Awake()
     {
         touchMover = InputManager.Instance;
+
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
     }
 
     void OnEnable()
@@ -129,11 +139,11 @@ public class Leni : MonoBehaviour
         EnergyBar.Instance.SetEnergy(Energy);
     }
 
-    private void AddEnergy()
+    public void AddEnergy()
     {
-        Energy = Mathf.Clamp(Energy + 1, 0, MaxEnergy);
-        EnergyDurationCounter = 0;
-        EnergyBar.Instance.SetEnergy(Energy);
+        Instance.Energy = Mathf.Clamp(Instance.Energy + 1, 0, MaxEnergy);
+        Instance.EnergyDurationCounter = 0;
+        EnergyBar.Instance.SetEnergy(Instance.Energy);
     }
 
 

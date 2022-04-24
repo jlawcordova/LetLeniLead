@@ -16,8 +16,8 @@ public class PowerUp : MonoBehaviour
         GameManager.Instance.Freeze();
         Instantiate(PowerUpCutScene, Canvas.Instance.transform);
 
-
-        // TODO: Add powerup effect.
         Instantiate(IpanaloCutscene, Canvas.Instance.transform);
+
+        AudioManager.PlaySpecialMusic();
     }
 }

@@ -288,6 +288,8 @@ MonoBehaviour:
   MaxPathCount: 5
   EnergyPityTimer: 650
   EnergyPityTimerCounter: 0
+  PowerUpTimer: 1500
+  PowerUpTimerCounter: 0
 --- !u!4 &71461688
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,6 +1382,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3817248335955169042, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: KayLeniTayo
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d91afc937265b14bacbd26d7709b668, type: 3}
+    - target: {fileID: 3817248335955169042, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
+      propertyPath: KayLeniTayoSpecial
+      value: 
+      objectReference: {fileID: 8300000, guid: 5329b19ec43d74d44a4ec515af1025f0, type: 3}
     - target: {fileID: 3817248335955169043, guid: 4cead3420166a9b4db4148e788bdb693, type: 3}
       propertyPath: m_RootOrder
       value: 0

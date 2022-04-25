@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            return (LevelType)(Level%LevelTypeCount);
+            return (LevelType)(Mathf.Clamp(Level, 0, LevelTypeCount));
         }
     }
 

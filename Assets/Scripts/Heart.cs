@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,14 @@ public enum HeartType
 public enum HeartStyle
 {
     Heart,
-    Rosas
+    Rosas,
+    Energy
+}
+
+public enum Movement
+{
+    Static,
+    Bouncing
 }
 
 public class Heart : MonoBehaviour
@@ -20,12 +28,40 @@ public class Heart : MonoBehaviour
     public string SoundName;
     public HeartStyle Style = HeartStyle.Heart;
     public HeartType Type = HeartType.Adder;
+    public Movement Movement = Movement.Static;
+    public float SpeedX = 0.1f;
+    public float SpeedY = 0.1f;
 
     public int Value = 1;
 
+    void Start()
+    {
+        SpeedX = UnityEngine.Random.Range(0, 2) == 0 ? -0.05f : 0.1f;
+    }
+
     void FixedUpdate()
     {
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         HandleEdge();
+        HandleBounce();
+    }
+
+    private void HandleBounce()
+    {
+        if (Movement == Movement.Bouncing)
+        {
+            transform.position = new Vector3(transform.position.x + SpeedX, transform.position.y + SpeedY, transform.position.z);
+
+            var y = transform.position.y;
+            if (y > -1 || y < -4)
+            {
+                SpeedY *= -1;
+            }
+        }
     }
 
     private void HandleEdge()

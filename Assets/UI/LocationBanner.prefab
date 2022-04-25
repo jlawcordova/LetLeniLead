@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 0}
+  m_AnchoredPosition: {x: -700, y: 25}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5360955683013038426
@@ -97,6 +97,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 855d2f4fa08e9cd488534ee2dc8514da, type: 3}
   - {fileID: 21300000, guid: 9d2007d598268854b9dda5a443568c59, type: 3}
   - {fileID: 21300000, guid: f1a4227eaa0c65f40925db8be9e8d274, type: 3}
+  LevelTypeIndex: 0
 --- !u!95 &5360955683013038428
 Animator:
   serializedVersion: 3

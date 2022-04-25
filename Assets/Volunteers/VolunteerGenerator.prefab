@@ -56,7 +56,14 @@ MonoBehaviour:
   - {fileID: 1327279791920662129, guid: ec1e94f81c6f33545a3c334f389b1649, type: 3}
   - {fileID: 807500980404085724, guid: 9885a4e0b336eff4ca9f62280d5ce65f, type: 3}
   - {fileID: 4254677658389642816, guid: b7c3c69ec22ad714c8503596f8f47788, type: 3}
+  - {fileID: 8578812289857253120, guid: da35c390fc8335f4ba144e866e739e2e, type: 3}
+  - {fileID: 7905171007281007853, guid: 121df86212264cd4480105f04cb7bb4c, type: 3}
+  - {fileID: 8668845981721756020, guid: 32ffa902b128969409eac981bc75164c, type: 3}
+  - {fileID: 952600721478664022, guid: fe2a5bb76f64beb4a9d017ebb6e9dd4a, type: 3}
   StartX: -11
   MinY: -4.5
   MaxY: 0
   Sound: {fileID: 8300000, guid: 3fa60148ff951b74d8da360b48e393ea, type: 3}
+  SkipButton: {fileID: 7855588881930128954, guid: 387db1ebfad1b8c48b622b77e4a8f6b3, type: 3}
+  VolunteerCount: 0
+  VolunteerCountToSkip: 10

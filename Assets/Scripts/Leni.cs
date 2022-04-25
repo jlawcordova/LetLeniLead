@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 [DefaultExecutionOrder(0)]
 public class Leni : MonoBehaviour
 {
+    public static Leni Instance { get; private set; }
     InputManager touchMover;
     public GameObject MainCamera;
     public bool IsMoving = false;
@@ -19,9 +21,25 @@ public class Leni : MonoBehaviour
     public float MaxY = 4.5f;
     public GameObject HeartBurst;
 
+    #region Energy
+    public static int MaxEnergy = 3;
+    public int Energy = 0;
+    public int EnergyDuration = 10000;
+    public int EnergyDurationCounter = 0;
+    #endregion
+
     void Awake()
     {
         touchMover = InputManager.Instance;
+
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
     }
 
     void OnEnable()
@@ -34,6 +52,11 @@ public class Leni : MonoBehaviour
     {
         touchMover.OnStartTouch -= p => SetMove(p);
         touchMover.OnCancelTouch -= StopMove;
+    }
+
+    void Start()
+    {
+        Energy = MaxEnergy;
     }
 
     void SetMove(Vector2 startTouchPosition)
@@ -67,6 +90,11 @@ public class Leni : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {   
+        if (GameManager.Instance.Frozen)
+        {
+            return;
+        }
+
         if (GameManager.GameState == GameState.End)
         {
             transform.position = new Vector3(
@@ -86,8 +114,38 @@ public class Leni : MonoBehaviour
             MoveY(touchMover.YTargetPosition);
         }
 
+        HandleEnergyDepletion();
         HandleHeartCollision();
     }
+
+    private void HandleEnergyDepletion()
+    {
+        EnergyDurationCounter++;
+
+        if (EnergyDurationCounter >= EnergyDuration)
+        {
+            RemoveEnergy();
+            EnergyDurationCounter = 0;
+            if (Energy <= 0)
+            {
+                GameManager.SetEnd();
+            }
+        }
+    }
+
+    private void RemoveEnergy()
+    {
+        Energy--;
+        EnergyBar.Instance.SetEnergy(Energy);
+    }
+
+    public void AddEnergy()
+    {
+        Instance.Energy = Mathf.Clamp(Instance.Energy + 1, 0, MaxEnergy);
+        Instance.EnergyDurationCounter = 0;
+        EnergyBar.Instance.SetEnergy(Instance.Energy);
+    }
+
 
     void HandleHeartCollision()
     {
@@ -101,6 +159,13 @@ public class Leni : MonoBehaviour
                 return;
             }
 
+            if (hit.collider.gameObject.tag == "PowerUp")
+            {
+                var powerUp = hit.collider.gameObject.GetComponent<PowerUp>();
+                powerUp.Consume();
+                return;
+            }
+
             var heart = hit.collider.gameObject.GetComponent<Heart>();
             var heartValue = heart.Consume();
             if (heartValue.Style == HeartStyle.Heart)
@@ -110,6 +175,9 @@ public class Leni : MonoBehaviour
             } else if (heartValue.Style == HeartStyle.Rosas)
             {
                 GameManager.Instance.TotalRosas++;
+            } else if (heartValue.Style == HeartStyle.Energy)
+            {
+                AddEnergy();
             }
             Destroy(hit.collider.gameObject);
         }

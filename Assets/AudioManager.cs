@@ -6,6 +6,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Dictionary<string, AudioSource> AudioSources = new Dictionary<string, AudioSource>();
+
+    private AudioSource MainAudioSource;
+
+    public AudioClip KayLeniTayo;
+    public AudioClip KayLeniTayoSpecial;
+
     private void Awake()
     {
         if (Instance != null)
@@ -16,6 +22,20 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        MainAudioSource = GetComponent<AudioSource>();
+    }
+
+    public static void PlayNormalMusic()
+    {
+        Instance.MainAudioSource.clip = Instance.KayLeniTayo;
+        Instance.MainAudioSource.Play();
+    }
+
+    public static void PlaySpecialMusic()
+    {
+        Instance.MainAudioSource.clip = Instance.KayLeniTayoSpecial;
+        Instance.MainAudioSource.Play();
     }
 
     public static void Play(string name, AudioClip clip, float pitch, bool loop, float volume = 0.65f)

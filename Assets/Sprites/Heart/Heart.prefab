@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5472965667108978168}
   - component: {fileID: 3781478909086060198}
   - component: {fileID: 346161244107106956}
+  - component: {fileID: 1613925183216922965}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -116,7 +117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 37780d04dbd26c64390073546e3493d7, type: 3}
   SoundName: Heart
+  Style: 0
   Type: 0
+  Movement: 0
+  SpeedX: 0.1
+  SpeedY: 0.1
   Value: 1
 --- !u!50 &3781478909086060198
 Rigidbody2D:
@@ -158,3 +163,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1613925183216922965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342599927381167540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d949d1b23f5f44282989a68478539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

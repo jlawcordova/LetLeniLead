@@ -140,3 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e567793e7926c9942a42d05a3e32a3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KayLeniTayo: {fileID: 8300000, guid: 4d91afc937265b14bacbd26d7709b668, type: 3}
+  KayLeniTayoSpecial: {fileID: 8300000, guid: 5329b19ec43d74d44a4ec515af1025f0, type: 3}

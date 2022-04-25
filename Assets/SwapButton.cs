@@ -17,6 +17,7 @@ public class SwapButton : MonoBehaviour
 
         Help.SetActive(IsHelp);
         Credits.SetActive(!IsHelp);
+        SetText();
     }
 
     public void OnClick()
@@ -25,7 +26,12 @@ public class SwapButton : MonoBehaviour
         Help.SetActive(IsHelp);
         Credits.SetActive(!IsHelp);
 
-        if (IsHelp)
+        SetText();
+    }
+
+    private void SetText()
+    {
+        if (!IsHelp)
         {
             text.text = "Help";
         }

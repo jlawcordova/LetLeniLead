@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3791506686979791740}
   - component: {fileID: 5410865430673123362}
   - component: {fileID: 8908135086348585992}
+  - component: {fileID: 522846030608380951}
   m_Layer: 0
   m_Name: BouncingEnergy
   m_TagString: Untagged
@@ -162,3 +163,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &522846030608380951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912854232330382128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d949d1b23f5f44282989a68478539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

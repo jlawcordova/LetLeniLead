@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5099398346133878897}
   - component: {fileID: 5751972932242931933}
   - component: {fileID: 5963885782151915909}
+  - component: {fileID: -3766147355670582510}
   m_Layer: 0
   m_Name: Powerup
   m_TagString: PowerUp
@@ -170,3 +171,15 @@ MonoBehaviour:
   Sound: {fileID: 8300000, guid: 6937ec61a232cb14cb0c54ca6b39bf6d, type: 3}
   PowerUpCutScene: {fileID: 8366600172353807451, guid: 99e08012e6011e3468e983e160c5048e, type: 3}
   IpanaloCutscene: {fileID: 4389095414159736427, guid: 57715a8a61bbe964ba72724b96d92fd1, type: 3}
+--- !u!114 &-3766147355670582510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589266067492822857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d949d1b23f5f44282989a68478539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

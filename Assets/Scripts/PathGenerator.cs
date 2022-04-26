@@ -31,11 +31,13 @@ public class PathGenerator : MonoBehaviour
 
     public int PowerUpTimer = 1500;
     public int PowerUpTimerCounter = 0;
+    public static bool KulayRosas = false;
 
     #endregion
 
     void Start()
     {
+        KulayRosas = false;
         MaxPathCount = 5 + Mathf.Clamp(LevelManager.Instance.Level, 1, 5);
         Rate = 100f - Mathf.Clamp((LevelManager.Instance.Level * 4), 1, 60);
     }
@@ -95,6 +97,12 @@ public class PathGenerator : MonoBehaviour
     private void GeneratePath()
     {
         var chance = Random.Range(0, 100);
+
+        if (KulayRosas)
+        {
+            GenerateLine();
+            return;
+        }
 
         if (chance > 60)
         {
@@ -185,17 +193,56 @@ public class PathGenerator : MonoBehaviour
 
     private void GenerateLine()
     {
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f - 0.83f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
-        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 1f);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f - 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f, false, true);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x - 0.5f, transform.position.y - 1f, false, true);
 
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f - 0.83f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f);
-        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 1f);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f - 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f, false, true);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+        InstantiateRandomHeart(transform.position.x + 0.5f, transform.position.y - 1f, false, true);
+
+        if (KulayRosas)
+        {
+            InstantiateRandomHeart(transform.position.x + 1.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 1.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 1.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 1.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 1.5f, transform.position.y - 1f, false, true);
+
+            InstantiateRandomHeart(transform.position.x + 2.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 2.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 2.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 2.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 2.5f, transform.position.y - 1f, false, true);
+
+            InstantiateRandomHeart(transform.position.x + 3.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 3.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 3.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 3.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 3.5f, transform.position.y - 1f, false, true);
+
+            InstantiateRandomHeart(transform.position.x + 4.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 4.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 4.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 4.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 4.5f, transform.position.y - 1f, false, true);
+
+            InstantiateRandomHeart(transform.position.x + 5.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 5.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 5.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 5.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 5.5f, transform.position.y - 1f, false, true);
+
+            InstantiateRandomHeart(transform.position.x + 6.5f, transform.position.y - 3.5f - 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 6.5f, transform.position.y - 3.5f, false, true);
+            InstantiateRandomHeart(transform.position.x + 6.5f, transform.position.y - 3.5f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 6.5f, transform.position.y - 3.5f + 0.83f + 0.83f, false, true);
+            InstantiateRandomHeart(transform.position.x + 6.5f, transform.position.y - 1f, false, true);
+        }
     }
 
     private void GenerateSpecial()

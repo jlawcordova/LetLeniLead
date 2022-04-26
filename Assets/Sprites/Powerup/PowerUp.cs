@@ -7,6 +7,7 @@ public class PowerUp : MonoBehaviour
     public AudioClip Sound;
     public GameObject PowerUpCutScene;
     public GameObject IpanaloCutscene;
+    public GameObject KulayRosasCutScene;
 
     public void Consume()
     {
@@ -16,7 +17,15 @@ public class PowerUp : MonoBehaviour
         GameManager.Instance.Freeze();
         Instantiate(PowerUpCutScene, Canvas.Instance.transform);
 
-        Instantiate(IpanaloCutscene, Canvas.Instance.transform);
+        var chance = Random.Range(0, 2);
+        if (chance == 0)
+        {
+            Instantiate(IpanaloCutscene, Canvas.Instance.transform);
+        }
+        else
+        {
+            Instantiate(KulayRosasCutScene, Canvas.Instance.transform);
+        }
 
         AudioManager.PlaySpecialMusic();
     }

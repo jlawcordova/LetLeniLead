@@ -298,6 +298,22 @@ PrefabInstance:
       value: 76.40503
       objectReference: {fileID: 0}
     - target: {fileID: 1388403071699418061, guid: f37689657c8301b409c5c36d589f1762, type: 3}
+      propertyPath: m_Text
+      value: pa ang kailangan para makalusot sa next level!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388403071699418061, guid: f37689657c8301b409c5c36d589f1762, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86a0fcca8429dfb4d883abafd7e0ac95, type: 3}
+    - target: {fileID: 1388403071699418061, guid: f37689657c8301b409c5c36d589f1762, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388403071699418061, guid: f37689657c8301b409c5c36d589f1762, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388403071699418061, guid: f37689657c8301b409c5c36d589f1762, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 1
       objectReference: {fileID: 0}

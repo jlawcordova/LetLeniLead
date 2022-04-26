@@ -79,7 +79,7 @@ public class LevelProgressBar : MonoBehaviour
                     PreviousScore = Mathf.Clamp(PreviousScore, 0, CompletionScore) ;
                     PreviousScoreText.text = PreviousScore.ToString();
                     AudioManager.Play("LevelUp", LevelupSound, 1.4f, false, 0.8f);
-                    NextLevelText.text = "PASOK NA SA NEXT LEVEL!";
+                    NextLevelText.text = "Naunlock mo na ang next location!";
                     ProgressComplete = true;
                     return;
                 }
